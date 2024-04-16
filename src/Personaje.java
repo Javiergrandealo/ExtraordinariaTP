@@ -182,7 +182,8 @@ public class Personaje {
      */
     @Override
     public String toString() {
-        return
+        String stats= "{ "+nombre+" (V: "+vida+", A: "+ataque+", D: "+defensa+", X: "+destreza+") }";
+        return stats;
     }
 
     /**
