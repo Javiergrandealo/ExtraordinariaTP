@@ -1,12 +1,15 @@
 <img height="300" src="doc/_e0bb06e0-c99d-4eb9-91a1-b0f2dade0193.jpg" width="300"/>
 
 # Aventuras
+
 _Proyecto de la convocatoria extraordinaria de Taller de Programación del curso 2023-2024_
 
 ETSI Sistemas Informáticos - Universidad Politécnica de Madrid
 
 ÍNDICE:
+
 <!-- TOC -->
+
 * [Aventuras](#aventuras)
   * [Objetivos del proyecto](#objetivos-del-proyecto)
   * [Introducción](#introducción)
@@ -35,9 +38,11 @@ ETSI Sistemas Informáticos - Universidad Politécnica de Madrid
   * [Instrucciones para el desarrollo del Proyecto](#instrucciones-para-el-desarrollo-del-proyecto)
   * [Normativa y evaluación](#normativa-y-evaluación)
   * [Entrega del proyecto](#entrega-del-proyecto)
+
 <!-- TOC -->
 
 ## Objetivos del proyecto
+
 El desarrollo de esta práctica pretende que el alumnado aplique la mayoría de los conceptos fundamentales de programación mediante la implementación de un proyecto de programación para la asignatura **Taller de Programación (TP)**. En concreto, el alumnado aplicará conceptos de:
 
 - Manejo de Entrada y Salida
@@ -50,14 +55,17 @@ El desarrollo de esta práctica pretende que el alumnado aplique la mayoría de 
 Para ello, el alumnado desarrollará de forma grupal (por parejas) un proyecto de programación en lenguaje Java mediante el uso del entorno de programación _IntelliJ IDEA_, el cual proporciona las herramientas necesarias para el desarrollo, pruebas, documentación y depuración de código fuente en Java.
 
 ## Introducción
+
 Este proyecto consiste en la creación de un juego conversacional de aventuras en el que el jugador deberá superar una serie de habitaciones para poder avanzar en la historia. El juego se desarrollará en un entorno de consola y se podrá jugar en cualquier sistema operativo.
 
 El objetivo del juego es encontrar la salida de un laberinto de habitaciones. Para ello, el jugador deberá recoger objetos para maximizar el valor de monedas con el que escapa.
 
 ## Componentes del sistema
+
 Los componentes que deberá tener el juego son los siguientes:
 
 ### Sala
+
 Una sala es un lugar en el que el personaje puede estar. Cada sala tiene un nombre y una descripción. Además, cada sala puede tener una serie de objetos que el jugador puede recoger. Los datos que definen una sala son los siguientes:
 
 - **Descripción**: Texto que describe la sala.
@@ -74,6 +82,7 @@ Las salas están definidas en un fichero de texto que se cargará al inicio del 
 Las salas pueden tener puertas en las direcciones norte, sur, este y oeste. Si una sala tiene una puerta en una dirección, el jugador podrá moverse a la sala que está al otro lado de la puerta.
 
 ### Ítem
+
 Un ítem es un objeto que el jugador puede recoger. Los datos que definen un ítem son los siguientes:
 
 - **Descripción**: Texto que describe el ítem.
@@ -84,6 +93,7 @@ Un ítem es un objeto que el jugador puede recoger. Los datos que definen un ít
 Los ítems están definidos en un fichero de texto que se cargará al inicio del juego.
 
 ### Monstruo
+
 Un monstruo es un enemigo que el jugador puede encontrar en una sala. Los datos que definen un monstruo son los siguientes:
 
 - **Nombre**: Nombre del monstruo.
@@ -95,6 +105,7 @@ Un monstruo es un enemigo que el jugador puede encontrar en una sala. Los datos 
 Los monstruos están definidos en un fichero de texto que se cargará al inicio del juego.
 
 ### Trampa
+
 Una trampa es un obstáculo que el jugador puede encontrar en una sala. Los datos que definen una trampa son los siguientes:
 
 - **Descripción**: Texto que describe la trampa.
@@ -104,6 +115,7 @@ Una trampa es un obstáculo que el jugador puede encontrar en una sala. Los dato
 Las trampas están definidas en un fichero de texto que se cargará al inicio del juego.
 
 ### Personaje
+
 El personaje es el jugador que controla el usuario. Los datos que definen un personaje son los siguientes:
 
 - **Nombre**: Nombre del personaje.
@@ -118,15 +130,18 @@ El personaje es el jugador que controla el usuario. Los datos que definen un per
 El personaje se creará al inicio del juego y se podrá mover por las salas del laberinto. El personaje podrá recoger ítems, luchar contra monstruos y esquivar trampas.
 
 ### Motor del juego
+
 El motor del juego es el encargado de gestionar el flujo del juego. El motor del juego se encargará de cargar las salas, los ítems, los monstruos y las trampas del juego. Además, el motor del juego se encargará de gestionar las acciones del jugador, como moverse por las salas, recoger ítems, luchar contra monstruos y esquivar trampas. Está definido por:
 
 - **Mapa**: Matriz de salas que forman el laberinto.
 - **Máximo número de ítems, monstruos y trampas** que puede haber en cada sala.
 
 ## Funcionalidades del juego
+
 El juego deberá tener las siguientes funcionalidades:
 
 ### Parámetros de ejecución
+
 El juego deberá poder ejecutarse con los siguientes parámetros de línea de comandos (en ese orden):
 
 - `filas`: Número de filas del mapa.
@@ -141,9 +156,11 @@ El juego deberá poder ejecutarse con los siguientes parámetros de línea de co
 - `fichero_puntuaciones`: Fichero de texto con las puntuaciones de otras partidas.
 
 ### Inicialización del juego
+
 Al inicio del juego, el motor del juego cargará las salas, los ítems, los monstruos y las trampas del juego. Para ello, leerá los ficheros correspondientes y creará las estructuras de datos necesarias para representar el juego. A continuación se define el formato de los ficheros de texto que contienen la información de las salas, los ítems, los monstruos y las trampas.
 
 #### Fichero de salas
+
 El fichero de salas contendrá la información de todas las salas del juego. Cada sala estará definida por una línea de texto que contendrá los siguientes campos separados por el caracter `;`:
 
 ```csv
@@ -169,6 +186,7 @@ Por ejemplo, el fichero de salas podría tener el siguiente contenido:
 ```
 
 #### Fichero de ítems
+
 El fichero de ítems contendrá la información de todos los ítems del juego. Cada ítem estará definido por una línea de texto que contendrá los siguientes campos separados por el caracter `;`:
 
 ```csv
@@ -201,6 +219,7 @@ Por ejemplo, el fichero de ítems podría tener el siguiente contenido:
 ```
 
 #### Fichero de monstruos
+
 El fichero de monstruos contendrá la información de todos los monstruos del juego. Cada monstruo estará definido por una línea de texto que contendrá los siguientes campos separados por el caracter `;`:
 
 ```csv
@@ -226,6 +245,7 @@ Por ejemplo, el fichero de monstruos podría tener el siguiente contenido:
 ```
 
 #### Fichero de trampas
+
 El fichero de trampas contendrá la información de todas las trampas del juego. Cada trampa estará definida por una línea de texto que contendrá los siguientes campos separados por el caracter `;`:
 
 ```csv
@@ -244,6 +264,7 @@ Por ejemplo, el fichero de trampas podría tener el siguiente contenido:
 ```
 
 ### Creación del personaje
+
 Al inicio del juego, el jugador deberá crear un personaje proporcionando el nombre y la distribución de puntos de vida, ataque, defensa y destreza. La aplicación irá solicitando estos datos por pantalla, teniendo en cuenta que la suma de los puntos de vida, ataque, defensa y destreza no pueden superar los 250 puntos. Cabe destacar que los valores mínimos son 50 puntos de vida y 1 punto de ataque, defensa y destreza.
 
 El número máximo de ítems que puede llevar el personaje y el peso máximo de los ítems que puede llevar el personaje se establecerán en función de los puntos de destreza y ataque del personaje. El número de ítems se corresponde con el valor entero de la división de los puntos de destreza entre 4, con un mínimo de 1 objeto. El peso máximo de los ítems se corresponde con el valor entero de la división de los puntos de ataque entre 2, con un mínimo de 1.0 kg.
@@ -262,6 +283,7 @@ Un ejemplo de traza de la creación del personaje sería el siguiente:
 Es importante destacar que hay que controlar el rango de valores que puede introducir el usuario. Si el usuario introduce un valor fuera del rango permitido, se le deberá solicitar de nuevo.
 
 ### Bucle de juego
+
 Una vez creado el personaje, el juego comenzará. El jugador podrá moverse por las salas del mapa, recoger ítems, luchar contra monstruos y esquivar trampas. El juego terminará cuando el jugador encuentre la salida del mapa o cuando el jugador muera. Importante: la salida del laberinto estará en la sala que se encuentra en la última fila y última columna del mapa, mientras que la sala inicial estará en la primera fila y primera columna del mapa.
 
 El bucle principal del juego deberá tener la siguiente estructura:
@@ -273,7 +295,8 @@ El bucle principal del juego deberá tener la siguiente estructura:
 5. Mostrar el mapa y las opciones de movimiento al jugador y pedir al jugador que elija una dirección para moverse.
 
 #### Combatir con monstruos
-Cuando el jugador entra en una sala con monstruos, el jugador deberá luchar contra uno de los monstruos de la sala. El jugador podrá elegir uno de los monstruos de la sala para luchar. El jugador y el monstruo se atacarán mutuamente hasta que uno de los dos muera, teniendo en cuenta que el jugador siempre ataca primero. 
+
+Cuando el jugador entra en una sala con monstruos, el jugador deberá luchar contra uno de los monstruos de la sala. El jugador podrá elegir uno de los monstruos de la sala para luchar. El jugador y el monstruo se atacarán mutuamente hasta que uno de los dos muera, teniendo en cuenta que el jugador siempre ataca primero.
 
 El daño que hace el jugador al monstruo se corresponde con la diferencia entre el ataque del jugador y la defensa del monstruo. El daño que hace el monstruo al jugador se corresponde con la diferencia entre el ataque del monstruo y la defensa del jugador.
 
@@ -294,6 +317,7 @@ Escribe el nombre del monstruo que quieres atacar: Orco
 ```
 
 #### Esquivar trampas
+
 Cuando el jugador entra en una sala con trampas habrá que determinar si el jugador esquiva la trampa o recibe daño. Para ello, se generará un número aleatorio entre 1 y 50. Si el número aleatorio es menor o igual a la destreza del jugador, el jugador esquivará la trampa. En caso contrario, el jugador recibirá el daño de la trampa.
 
 Un ejemplo de traza de procesar trampas sería el siguiente:
@@ -305,6 +329,7 @@ Te ha hecho 10 puntos de daño
 ```
 
 #### Recoger ítems
+
 Cuando el jugador entra en una sala con ítems, el jugador podrá recoger uno de los ítems de la sala. El jugador podrá llevar un número máximo de ítems y un peso máximo de ítems. Si el jugador intenta recoger un ítem y no puede llevarlo, se le mostrará un mensaje indicando que no puede llevar más ítems.
 
 El jugador puede seguir recogiendo items mientras no haya alcanzado el número máximo de ítems o el peso máximo de ítems. Cuando el jugador haya decidido no recoger más ítems, lo indicará con la orden `NINGUNO`.
@@ -329,6 +354,7 @@ Tu mochila vale 100.0 monedas
 ```
 
 #### Moverse por las salas
+
 Una vez que se han procesado los monstruos, las trampas y los ítems de la sala, el jugador podrá moverse por las salas del mapa. El jugador podrá moverse en las direcciones norte, sur, este y oeste. Para ello, se le mostrará al jugador el mapa y se le pedirá que elija una dirección para moverse.
 
 Un ejemplo de traza de moverse por las salas sería el siguiente:
@@ -356,9 +382,11 @@ Introduce el movimiento (N, E, S, O): E
 ```
 
 ### Finalización del juego
+
 El juego terminará cuando el jugador encuentre la salida del mapa o cuando el jugador muera. Si el jugador encuentra la salida del mapa, se le mostrará un mensaje indicando que ha ganado el juego y se le mostrará el valor total de los ítems que lleva en la mochila. Si el jugador muere, se le mostrará un mensaje indicando que ha perdido el juego y se le mostrará el valor total de los ítems que llevaba en la mochila.
 
 ### Gestión de puntuaciones
+
 El juego deberá llevar un registro de las puntuaciones de las partidas. Al inicio del juego, se cargarán las puntuaciones de las partidas anteriores desde un fichero de texto, cuya ruta se ha pasado por parámetro a la aplicación. Al finalizar el juego, se guardará la puntuación de la partida actual en el fichero de texto. Este fichero debe abrirse en modo de añadir información **sin sobreescribir**.
 
 Cada partida se registra en una línea de texto con el siguiente formato:
@@ -375,8 +403,8 @@ Por ejemplo, el fichero de puntuaciones podría tener el siguiente contenido:
 2024-04-08	{ Raul (V: 50, A: 100, D: 25, X: 25) }, 800.0 monedas
 ```
 
-
 ## Instrucciones para el desarrollo del Proyecto
+
 El proyecto de programación debe realizarse teniendo en cuenta las siguientes instrucciones:
 
 - Se entrega un esqueleto de código (Skeleton.zip) incluyendo cada una de las clases obligatorias que deberá tener el proyecto. Estas clases contienen únicamente la componente pública no desarrollada (métodos públicos de cada clase). Se deberá definir tanto la componente privada como desarrollar todos los métodos definidos. **NO** está permitido alterar los nombres, parámetros ni tipo de retorno de ninguno de estos métodos. La alteración se evaluará con un 0 para el método alterado.
@@ -386,6 +414,7 @@ El proyecto de programación debe realizarse teniendo en cuenta las siguientes i
 - Todas las clases, atributos y métodos deben estar documentados utilizando Javadoc.
 
 ## Normativa y evaluación
+
 El proyecto de programación se evaluará teniendo en cuenta los siguientes aspectos:
 
 - El proyecto se realizará de forma grupal (por parejas). Cada pareja deberá desarrollar de manera independiente su propio proyecto de programación y realizar su propia entrega.
@@ -394,6 +423,7 @@ El proyecto de programación se evaluará teniendo en cuenta los siguientes aspe
 - El caso de estudio de partida supone el enunciado base para la realización del proyecto de  programación de la asignatura. Este enunciado podrá ser actualizado por el profesorado de la  asignatura con fines aclaratorios y/o ejemplificadores.
 
 ## Entrega del proyecto
+
 El Proyecto de Programación de la asignatura Taller de Programación (TP) consta de una entrega. La fecha límite de entrega será anunciada en el Moodle de la asignatura.
 
 La práctica se entregará a través del Moodle de la asignatura. Cada entrega debe contener al menos un proyecto de IntelliJ IDEA con todos los ficheros de configuración, documentación y código fuente de dicho proyecto (no es necesario entregar los ficheros de bytecodes).

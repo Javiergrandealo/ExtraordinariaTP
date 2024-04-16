@@ -22,7 +22,14 @@ public class Personaje {
      * @param maxPesoPorPersonaje
      */
     public Personaje(String nombre, int vida, int ataque, int defensa, int destreza, int maxItemsPorPersonaje, double maxPesoPorPersonaje) {
-
+        this.nombre = nombre;
+        this.vida = vida;
+        this.ataque = ataque;
+        this.defensa = defensa;
+        this.destreza = destreza;
+        maxItemsPorPersonaje = destreza/4;
+        this.maxPesoPorPersonaje = ataque/2;
+        items = new Item[maxItemsPorPersonaje];
     }
 
     /**
@@ -34,7 +41,52 @@ public class Personaje {
      * @return
      */
     public static Personaje crearPersonaje(Scanner teclado) {
+        Personaje personaje;
+        int suma = 0;
+        int vida=0;
+        int ataque=0;
+        int defensa=0;
+        int destreza=0;
+        System.out.println("¿Cómo te llamas?");
+        String nombre = teclado.nextLine();
+        System.out.println("Hola "+nombre+"! Tienes 250 puntos para repartir entre vida, ataque, defensa y destreza.");
+        while(suma<53|| suma>250){
+        System.out.println("¿Cuánta vida quieres tener? (50-247)");
+        vida = teclado.nextInt();
+        while (vida<50 || vida>247) {
+            System.out.println("La vida debe estar entre 50 y 247. Introduce un valor válido: ");
+            vida = teclado.nextInt();
+            
+        }
+        suma += vida;
+        System.out.println("¿Cuánto ataque quieres tener? (1-"+(250-suma-2)+")");
+        ataque = teclado.nextInt();
+        while (ataque<1 || ataque>148) {
+            System.out.println("El ataque debe estar entre 1 y 148. Introduce un valor válido: ");
+            ataque = teclado.nextInt();
+        }
+        suma += ataque;
+        System.out.println("¿Cuánta defensa quieres tener? (1-"+(250-suma-1)+")");
+        defensa = teclado.nextInt();
+        while (defensa<1 || defensa>49) {
+            System.out.println("La defensa debe estar entre 1 y 49. Introduce un valor válido: ");
+            defensa = teclado.nextInt();
+        }
+        suma += defensa;
+        System.out.println("¿Cuánta destreza quieres tener? (1-"+(250-suma)+")");
+        destreza = teclado.nextInt();
+        while (destreza<1 || destreza>25) {
+            System.out.println("La destreza debe estar entre 1 y 25. Introduce un valor válido: ");
+            destreza = teclado.nextInt();
+        }
+        suma += destreza;
 
+        if(suma>250){
+            System.out.println("Has superado el límite de puntos. Vuelve a introducir los valores.");
+        }
+    }
+        personaje = new Personaje(nombre, vida, ataque, defensa, destreza, destreza/4, ataque/2);
+        return personaje;
     }
 
     /**
@@ -102,6 +154,10 @@ public class Personaje {
      * @param danyo
      */
     public void recibirDanyo(int danyo) {
+        danyo = danyo - defensa;
+        if (danyo>0) {
+            vida -= danyo;
+        }
 
     }
 

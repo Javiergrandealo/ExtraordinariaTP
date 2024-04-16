@@ -15,6 +15,10 @@ public class Monstruo {
      * @param defensa
      */
     public Monstruo(String nombre, int vida, int ataque, int defensa) {
+        this.nombre = nombre;
+        this.vida = vida;
+        this.ataque = ataque;
+        this.defensa = defensa;
 
     }
 
@@ -57,7 +61,10 @@ public class Monstruo {
      * @param ataque
      */
     public void recibirDanyo(int ataque) {
-
+        ataque = ataque - defensa;
+        if (ataque > 0) {
+            vida -= ataque;
+        }
     }
 
     /**
@@ -68,7 +75,7 @@ public class Monstruo {
      */
     @Override
     public String toString() {
-        return
+        return nombre + " (V: " + vida + ", A: " + ataque + ", D: " + defensa + ")";
     }
 
     /**
