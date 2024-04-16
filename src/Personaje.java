@@ -34,7 +34,7 @@ public class Personaje {
 
     /**
      * Metodo crearPersonaje que administra toda la generación de personajes
-     * TODO El metodo tiene que ser capaz de recoger todas las características del personaje mediante preguntas y
+     *  El metodo tiene que ser capaz de recoger todas las características del personaje mediante preguntas y
      *  respuestas por pantalla y se debe controlar que los valores introducidos sean validos. Una vez recabados
      *  todos los datos del personaje generar un objeto con dichas características.
      * @param teclado
