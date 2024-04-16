@@ -13,6 +13,7 @@ public class Personaje {
 
     /**
      * Constructor de la clase para inicializar todos los atributos
+     * 
      * @param nombre
      * @param vida
      * @param ataque
@@ -21,76 +22,82 @@ public class Personaje {
      * @param maxItemsPorPersonaje
      * @param maxPesoPorPersonaje
      */
-    public Personaje(String nombre, int vida, int ataque, int defensa, int destreza, int maxItemsPorPersonaje, double maxPesoPorPersonaje) {
+    public Personaje(String nombre, int vida, int ataque, int defensa, int destreza, int maxItemsPorPersonaje,
+            double maxPesoPorPersonaje) {
         this.nombre = nombre;
         this.vida = vida;
         this.ataque = ataque;
         this.defensa = defensa;
         this.destreza = destreza;
-        maxItemsPorPersonaje = destreza/4;
-        this.maxPesoPorPersonaje = ataque/2;
+        maxItemsPorPersonaje = destreza / 4;
+        this.maxPesoPorPersonaje = ataque / 2;
         items = new Item[maxItemsPorPersonaje];
     }
 
     /**
      * Metodo crearPersonaje que administra toda la generación de personajes
-     *  El metodo tiene que ser capaz de recoger todas las características del personaje mediante preguntas y
-     *  respuestas por pantalla y se debe controlar que los valores introducidos sean validos. Una vez recabados
-     *  todos los datos del personaje generar un objeto con dichas características.
+     * El metodo tiene que ser capaz de recoger todas las características del
+     * personaje mediante preguntas y
+     * respuestas por pantalla y se debe controlar que los valores introducidos sean
+     * validos. Una vez recabados
+     * todos los datos del personaje generar un objeto con dichas características.
+     * 
      * @param teclado
      * @return
      */
     public static Personaje crearPersonaje(Scanner teclado) {
         Personaje personaje;
         int suma = 0;
-        int vida=0;
-        int ataque=0;
-        int defensa=0;
-        int destreza=0;
+        int vida = 0;
+        int ataque = 0;
+        int defensa = 0;
+        int destreza = 0;
         System.out.println("¿Cómo te llamas?");
         String nombre = teclado.nextLine();
-        System.out.println("Hola "+nombre+"! Tienes 250 puntos para repartir entre vida, ataque, defensa y destreza.");
-        while(suma<53|| suma>250){
-        System.out.println("¿Cuánta vida quieres tener? (50-247)");
-        vida = teclado.nextInt();
-        while (vida<50 || vida>247) {
-            System.out.println("La vida debe estar entre 50 y 247. Introduce un valor válido: ");
+        System.out.println(
+                "Hola " + nombre + "! Tienes 250 puntos para repartir entre vida, ataque, defensa y destreza.");
+        while (suma < 53 || suma > 250) {
+            System.out.println("¿Cuánta vida quieres tener? (50-247)");
             vida = teclado.nextInt();
-            
-        }
-        suma += vida;
-        System.out.println("¿Cuánto ataque quieres tener? (1-"+(250-suma-2)+")");
-        ataque = teclado.nextInt();
-        while (ataque<1 || ataque>148) {
-            System.out.println("El ataque debe estar entre 1 y 148. Introduce un valor válido: ");
-            ataque = teclado.nextInt();
-        }
-        suma += ataque;
-        System.out.println("¿Cuánta defensa quieres tener? (1-"+(250-suma-1)+")");
-        defensa = teclado.nextInt();
-        while (defensa<1 || defensa>49) {
-            System.out.println("La defensa debe estar entre 1 y 49. Introduce un valor válido: ");
-            defensa = teclado.nextInt();
-        }
-        suma += defensa;
-        System.out.println("¿Cuánta destreza quieres tener? (1-"+(250-suma)+")");
-        destreza = teclado.nextInt();
-        while (destreza<1 || destreza>25) {
-            System.out.println("La destreza debe estar entre 1 y 25. Introduce un valor válido: ");
-            destreza = teclado.nextInt();
-        }
-        suma += destreza;
+            while (vida < 50 || vida > 247) {
+                System.out.println("La vida debe estar entre 50 y 247. Introduce un valor válido: ");
+                vida = teclado.nextInt();
 
-        if(suma>250){
-            System.out.println("Has superado el límite de puntos. Vuelve a introducir los valores.");
+            }
+            suma += vida;
+            System.out.println("¿Cuánto ataque quieres tener? (1-" + (250 - suma - 2) + ")");
+            ataque = teclado.nextInt();
+            while (ataque < 1 || ataque > 148) {
+                System.out.println("El ataque debe estar entre 1 y 148. Introduce un valor válido: ");
+                ataque = teclado.nextInt();
+            }
+            suma += ataque;
+            System.out.println("¿Cuánta defensa quieres tener? (1-" + (250 - suma - 1) + ")");
+            defensa = teclado.nextInt();
+            while (defensa < 1 || defensa > 49) {
+                System.out.println("La defensa debe estar entre 1 y 49. Introduce un valor válido: ");
+                defensa = teclado.nextInt();
+            }
+            suma += defensa;
+            System.out.println("¿Cuánta destreza quieres tener? (1-" + (250 - suma) + ")");
+            destreza = teclado.nextInt();
+            while (destreza < 1 || destreza > 25) {
+                System.out.println("La destreza debe estar entre 1 y 25. Introduce un valor válido: ");
+                destreza = teclado.nextInt();
+            }
+            suma += destreza;
+
+            if (suma > 250) {
+                System.out.println("Has superado el límite de puntos. Vuelve a introducir los valores.");
+            }
         }
-    }
-        personaje = new Personaje(nombre, vida, ataque, defensa, destreza, destreza/4, ataque/2);
+        personaje = new Personaje(nombre, vida, ataque, defensa, destreza, destreza / 4, ataque / 2);
         return personaje;
     }
 
     /**
      * Método getNombre
+     * 
      * @return String nombre
      */
     public String getNombre() {
@@ -99,6 +106,7 @@ public class Personaje {
 
     /**
      * Método getVida
+     * 
      * @return int vida
      */
     public int getVida() {
@@ -107,6 +115,7 @@ public class Personaje {
 
     /**
      * Método getAtaque
+     * 
      * @return int ataque
      */
     public int getAtaque() {
@@ -115,6 +124,7 @@ public class Personaje {
 
     /**
      * Método getDefensa
+     * 
      * @return int defensa
      */
     public int getDefensa() {
@@ -123,6 +133,7 @@ public class Personaje {
 
     /**
      * Método getDestreza
+     * 
      * @return int destreza
      */
     public int getDestreza() {
@@ -131,6 +142,7 @@ public class Personaje {
 
     /**
      * Método getItems
+     * 
      * @return Item[] items
      */
     public Item[] getItems() {
@@ -150,12 +162,14 @@ public class Personaje {
 
     /**
      * Método recibirDanyo para actualizar la vida de un personaje
-     * TODO Si el daño no es positivo, no hacer nada. En caso contrario reducir la vida según el daño pasado
+     * TODO Si el daño no es positivo, no hacer nada. En caso contrario reducir la
+     * vida según el daño pasado
+     * 
      * @param danyo
      */
     public void recibirDanyo(int danyo) {
         danyo = danyo - defensa;
-        if (danyo>0) {
+        if (danyo > 0) {
             vida -= danyo;
         }
 
@@ -176,13 +190,17 @@ public class Personaje {
 
     /**
      * Método sobreescrito para devolver la información de un personaje
-     * TODO Método para devolver un String con la información del personaje en el formato
-     *  descrito en la memoria de la práctica P.e: "{ Edgar (V: 20, A: 5, D: 2, X: 5) }"
+     * TODO Método para devolver un String con la información del personaje en el
+     * formato
+     * descrito en la memoria de la práctica P.e: "{ Edgar (V: 20, A: 5, D: 2, X: 5)
+     * }"
+     * 
      * @return
      */
     @Override
     public String toString() {
-        String stats= "{ "+nombre+" (V: "+vida+", A: "+ataque+", D: "+defensa+", X: "+destreza+") }";
+        String stats = "{ " + nombre + " (V: " + vida + ", A: " + ataque + ", D: " + defensa + ", X: " + destreza
+                + ") }";
         return stats;
     }
 
