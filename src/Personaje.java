@@ -151,18 +151,21 @@ public class Personaje {
 
     /**
      * Método getItem para devolver un Item según un índice dado
-     * TODO devolver null si el índice no es válido, y el item si el índice es correcto
+     * Tdevolver null si el índice no es válido, y el item si el índice es correcto
      * @param indice
      * @return
      */
     public Item getItem(int indice) {
-
-            return
+        if (indice < 0 || indice >= items.length) {
+            return null;
+        } else {
+            return items[indice];
+        }
     }
 
     /**
      * Método recibirDanyo para actualizar la vida de un personaje
-     * TODO Si el daño no es positivo, no hacer nada. En caso contrario reducir la
+     * Si el daño no es positivo, no hacer nada. En caso contrario reducir la
      * vida según el daño pasado
      * 
      * @param danyo
@@ -216,8 +219,10 @@ public class Personaje {
     }
 
     /**
-     * Método getPesoMochila para obtener el peso total que carga en la mochila el personaje
+     * Método getPesoMochila para obtener el peso total que carga en la mochila el
+     * personaje
      * recorrer la lista de items para obtener el peso total de todos y devolverlo
+     * 
      * @return
      */
     public double getPesoMochila() {
@@ -231,8 +236,10 @@ public class Personaje {
     }
 
     /**
-     * Método getValorMochila para obtener el valor total que lleva entre todos los items el personaje
+     * Método getValorMochila para obtener el valor total que lleva entre todos los
+     * items el personaje
      * recorrer la lista de items para obtener el valor total de todos y devolverlo
+     * 
      * @return
      */
     public double getValorMochila() {
@@ -246,17 +253,25 @@ public class Personaje {
     }
 
     /**
-     * Método infoMochila para obtener en formato String la información de la mochila
-     * TODO recorrer toda la lista de items del personaje para ir añadiendo la información de los items según el
-     *  formato mostrado en la memoria. P.e. "Mochila de Edgar:
-     *                                        Espada Mágica Peso: 1.5, Valor: 100
-     *                                        Armadura de Gromril Peso: 4, Valor: 300
-     *                                        Peso total: 5.5 Kg
-     *                                        Tu mochila vale 400 monedas"
+     * Método infoMochila para obtener en formato String la información de la
+     * mochila
+     * recorrer toda la lista de items del personaje para ir añadiendo la
+     * información de los items según el
+     * formato mostrado en la memoria. P.e. "Mochila de Edgar:
+     * Espada Mágica Peso: 1.5, Valor: 100
+     * Armadura de Gromril Peso: 4, Valor: 300
+     * Peso total: 5.5 Kg
+     * Tu mochila vale 400 monedas"
+     * 
      * @return
      */
     public String infoMochila() {
-
-        return
+        String mensaje = "Mochila de " + nombre + ":" + "\n";
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null) {
+                mensaje += items[i].toString() + "\n";
+            }
+        }
+        return mensaje;
     }
 }
