@@ -177,15 +177,33 @@ public class Personaje {
 
     /**
      * Método anyadirItem para incluir un item en la mochila del personaje
-     * TODO Comprobar si el item es valido y si el peso max del personaje no se supera para poder incluir el item,
-     *  en caso negativo ddevolver false, en caso de que se pueda incluir, añadir el item a la lista de items del
-     *  personaje y devolver true
+     * Comprobar si el item es valido y si el peso max del personaje no se supera
+     * para poder incluir el item,
+     * en caso negativo ddevolver false, en caso de que se pueda incluir, añadir el
+     * item a la lista de items del
+     * personaje y devolver true
+     * 
      * @param item
      * @return
      */
     public boolean anyadirItem(Item item) {
+        boolean valido = false;
+        int suma = 0;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null) {
+                suma += items[i].getPeso();
+            }
+        }
+        if (items.length < destreza / 4 && suma + item.getPeso() < maxPesoPorPersonaje) {
+            for (int i = 0; i < items.length; i++) {
+                if (items[i] == null) {
+                    items[i] = item;
+                    valido = true;
+                }
+            }
+        }
 
-            return
+        return valido;
     }
 
     /**
