@@ -56,7 +56,7 @@ public class Monstruo {
 
     /**
      * Método recibirDanyo para calcular la vida restante
-     * TODO actualizar la vida restante del monstruo despues de un ataque, siempre que el
+     * actualizar la vida restante del monstruo despues de un ataque, siempre que el
      * valor de ataque sea positivo
      * @param ataque
      */
@@ -69,7 +69,7 @@ public class Monstruo {
 
     /**
      * Método sobreescrito para devolver la información de un monstruo
-     * TODO Método para devolver un String con la información del monstruo en el formato
+     * Método para devolver un String con la información del monstruo en el formato
      *  descrito en la memoria de la práctica P.e: "[ Trasgo (V: 20, A: 5, D: 2) ]"
      * @return
      */
@@ -80,14 +80,18 @@ public class Monstruo {
 
     /**
      * Método que sobreescribe el comportamiento de equals
-     *  TODO Método para comparar si el objeto pasado como parámetro es igual a este,
+     *  Método para comparar si el objeto pasado como parámetro es igual a este,
      *      hay que comparar los parámetros internos del objeto (nombre, vida, ataque, defensa)
      * @param obj
      * @return True en caso de ser igual, false en otro caso
      */
     @Override
+    //CUIDADO: NO SABEMOS COMO FUNCIONA LOS DE OBJECT ASI QUE NO SABEMOS SI ESTA BIEN, PREGUNTAR EN TUTORIA
     public boolean equals(Object obj) {
-
-        return
+        if (obj instanceof Monstruo) {
+            Monstruo monstruo = (Monstruo) obj;
+            return monstruo.getNombre().equals(nombre) && monstruo.getVida() == vida && monstruo.getAtaque() == ataque && monstruo.getDefensa() == defensa;
+        }
+        return false;
     }
 }
