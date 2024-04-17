@@ -45,7 +45,7 @@ public class Item {
 
     /**
      * Método sobreescrito para devolver la información de un item
-     * TODO Método para devolver un String con la información del item en el formato
+     * Método para devolver un String con la información del item en el formato
      *  descrito en la memoria de la práctica P.e: "Espada Mágica (Peso: 1,5, Valor: 100,0)"
      * @return
      */
@@ -56,15 +56,18 @@ public class Item {
 
     /**
      * Método que sobreescribe el comportamiento de equals
-     *  TODO Método para comparar si el objeto pasado como parámetro es igual a este,
+     *  Método para comparar si el objeto pasado como parámetro es igual a este,
      *      hay que comparar los parámetros internos del objeto (peso, valor, descripción)
      * @param obj
      * @return True en caso de ser igual, false en otro caso
      */
     @Override
+//CUIDADO: NO SABEMOS COMO FUNCIONA LOS DE OBJECT ASI QUE NO SABEMOS SI ESTA BIEN, PREGUNTAR EN TUTORIA
     public boolean equals(Object obj) {
-        
-
-        return
+        if (obj instanceof Item) {
+            Item item = (Item) obj;
+            return item.getDescripcion().equals(descripcion) && item.getPeso() == peso && item.getValor() == valor;
+        }
+        return false;
     }
 }
