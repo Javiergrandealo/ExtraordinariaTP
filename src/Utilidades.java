@@ -19,7 +19,7 @@ public class Utilidades {
 
     /**
      * Método estático leerNumero para leer un numero pasado por pantalla
-     * TODO leer por pantalla y comprobar que es un número valido. Solicita un número repetidamente hasta que se
+     * leer por pantalla y comprobar que es un número valido. Solicita un número repetidamente hasta que se
      *  introduzca uno correcto (dentro de los límites)
      * @param teclado
      * @param mensaje
@@ -29,7 +29,12 @@ public class Utilidades {
      */
     // Solicita un número repetidamente hasta que se introduzca uno correcto (dentro de los límites)
     public static int leerNumero(Scanner teclado, String mensaje, int minimo, int maximo) {
-
-        return
+        System.out.println(mensaje);
+        int numero = teclado.nextInt();
+        while (numero < minimo || numero > maximo) {
+            System.out.println("Número incorrecto. " + mensaje);
+            numero = teclado.nextInt();
+        }
+        return numero;
     }
 }

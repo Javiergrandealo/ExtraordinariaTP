@@ -124,7 +124,7 @@ public class Sala {
     public Monstruo seleccionarMonstruo(Scanner teclado) {
         System.out.println("Selecciona un monstruo: ");
         listarMonstruos();
-        String monstruo = teclado.nextLine();
+        String monstruo = teclado.nextLine();// hay que utilizar el método leerCadena de la clase Utilidades
         return buscarMonstruo(monstruo);
     }
 
@@ -267,7 +267,7 @@ public class Sala {
     public Item seleccionarItem(Scanner teclado) {
         System.out.println("Selecciona un item: ");
         listarItems();
-        String item = teclado.nextLine();
+        String item = teclado.nextLine();// hay que utilizar el método leerCadena de la clase Utilidades
         return buscarItem(item);
     }
 
