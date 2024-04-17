@@ -188,13 +188,7 @@ public class Personaje {
      */
     public boolean anyadirItem(Item item) {
         boolean valido = false;
-        int suma = 0;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null) {
-                suma += items[i].getPeso();
-            }
-        }
-        if (items.length < destreza / 4 && suma + item.getPeso() < maxPesoPorPersonaje) {
+        if (items.length < destreza / 4 && getPesoMochila() + item.getPeso() < maxPesoPorPersonaje) {
             for (int i = 0; i < items.length; i++) {
                 if (items[i] == null) {
                     items[i] = item;
@@ -202,13 +196,12 @@ public class Personaje {
                 }
             }
         }
-
         return valido;
     }
 
     /**
      * Método sobreescrito para devolver la información de un personaje
-     * TODO Método para devolver un String con la información del personaje en el
+     * Método para devolver un String con la información del personaje en el
      * formato
      * descrito en la memoria de la práctica P.e: "{ Edgar (V: 20, A: 5, D: 2, X: 5)
      * }"
@@ -224,22 +217,32 @@ public class Personaje {
 
     /**
      * Método getPesoMochila para obtener el peso total que carga en la mochila el personaje
-     * TODO recorrer la lista de items para obtener el peso total de todos y devolverlo
+     * recorrer la lista de items para obtener el peso total de todos y devolverlo
      * @return
      */
     public double getPesoMochila() {
-
-        return
+        double peso = 0;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null) {
+                peso += items[i].getPeso();
+            }
+        }
+        return peso;
     }
 
     /**
      * Método getValorMochila para obtener el valor total que lleva entre todos los items el personaje
-     * TODO recorrer la lista de items para obtener el valor total de todos y devolverlo
+     * recorrer la lista de items para obtener el valor total de todos y devolverlo
      * @return
      */
     public double getValorMochila() {
-
-        return
+        double valor = 0;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null) {
+                valor += items[i].getValor();
+            }
+        }
+        return valor;
     }
 
     /**
