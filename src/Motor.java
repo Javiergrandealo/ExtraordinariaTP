@@ -91,7 +91,7 @@ public class Motor {
      * @return
      */
     public Sala getSala(int fila, int columna) {
-        return
+        return mapa[fila][columna];
     }
 
     /**
@@ -103,8 +103,15 @@ public class Motor {
      * @return
      */
     public String mostrarMapa(int fila, int columna) {
+        String mapa = "";
+        for (int i = 0; i < fila; i++) {
+            for (int j = 0; j < columna; j++) {
+                mapa += this.mapa[i][j].toString();
+            }
+            mapa += "\n";
+        }
 
-    return
+    return mapa;
 }
 
     /**
