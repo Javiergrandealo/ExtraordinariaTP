@@ -38,7 +38,7 @@ public class Motor {
      */
     Sala[][] cargarMapa(String ficheroMapa) {
 
-        return
+        return;
     }
 
     /**
