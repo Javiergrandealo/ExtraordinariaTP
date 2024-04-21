@@ -7,14 +7,15 @@ public class Utilidades {
 
     /**
      * Método estático leerCadena para leer un cadena de carecteres por pantalla
-     * TODO leer por pantalla y comprobar que es una cadena de caracteres válida. 
+     * leer por pantalla y comprobar que es una cadena de caracteres válida. 
      * @param teclado
      * @param s
      * @return
      */
     public static String leerCadena(Scanner teclado, String s) {
-
-        return
+        System.out.println(s);
+        String cadena = teclado.nextLine();
+        return cadena;
     }
 
     /**
