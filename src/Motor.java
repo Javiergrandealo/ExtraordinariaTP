@@ -84,7 +84,34 @@ public class Motor {
      * @param ficheroMonstruos
      */
     private void cargarMonstruos(String ficheroMonstruos) {
-
+        BufferedReader entrada = null;
+        try{
+            entrada = new BufferedReader(new FileReader(ficheroMonstruos));
+            String linea;
+            while((linea = entrada.readLine()) != null){
+                String[] partes = linea.split(";");
+                int fila = Integer.parseInt(partes[0]);
+                int columna = Integer.parseInt(partes[1]);
+                String descripcion = partes[2];
+                int vida = Integer.parseInt(partes[3]);
+                int ataque = Integer.parseInt(partes[4]);
+                int defensa = Integer.parseInt(partes[5]);
+                Monstruo monstruo = new Monstruo(descripcion, vida, ataque, defensa);
+                mapa[fila][columna].agregarMonstruo(monstruo);
+            }
+        }catch (FileNotFoundException e){
+            System.out.println("No se ha encontrado el fichero");
+        }catch (IOException e){
+            System.out.println("Error de lectura");    
+        }finally {
+            try{
+                if(entrada != null){
+                    entrada.close();
+                }
+            }catch (IOException e){
+                System.out.println("Error al cerrar el fichero");
+            }
+        }
     }
 
     /**
@@ -94,7 +121,32 @@ public class Motor {
      * @param ficheroTrampas
      */
     private void cargarTrampas(String ficheroTrampas) {
-
+        BufferedReader entrada = null;
+        try{
+            entrada = new BufferedReader(new FileReader(ficheroTrampas));
+            String linea;
+            while((linea = entrada.readLine())!=null){
+                String[] partes = linea.split(";");
+                int fila = Integer.parseInt(partes[0]);
+                int columna = Integer.parseInt(partes[1]);
+                String descripcion = partes[2];
+                int dano = Integer.parseInt(partes[3]);
+                Trampa trampa = new Trampa(descripcion, dano);
+                mapa[fila][columna].agregarTrampa(trampa);
+            }
+        }catch (FileNotFoundException e){
+            System.out.println("No se ha encontrado el fichero");
+        }catch (IOException e){
+            System.out.println("Error de lectura");
+        }finally {
+            try{
+                if(entrada != null){
+                    entrada.close();
+                }
+            }catch (IOException e){
+                System.out.println("Error al cerrar el fichero");
+            }
+        }
     }
 
     /**
