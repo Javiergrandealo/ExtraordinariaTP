@@ -48,7 +48,33 @@ public class Motor {
      * @param ficheroItems
      */
     private void cargarItems(String ficheroItems) {
-
+        BufferedReader entrada = null;
+        try{
+            entrada = new BufferedReader(new FileReader(ficheroItems));
+            String linea;
+            while((linea = entrada.readLine()) != null){
+                String[] partes = linea.split(";");
+                int fila = Integer.parseInt(partes[0]);
+                int columna = Integer.parseInt(partes[1]);
+                String descripcion = partes[2];
+                int valor = Integer.parseInt(partes[3]);
+                int peso = Integer.parseInt(partes[4]);
+                Item item = new Item(descripcion, valor, peso);
+                mapa[fila][columna].agregarItem(item);
+            }
+        }catch (FileNotFoundException e){
+            System.out.println("No se ha encontrado el fichero");
+        }catch (IOException e){
+            System.out.println("Error de lectura");
+        }finally {
+            try{
+                if(entrada != null){
+                    entrada.close();
+                }
+            }catch (IOException e){
+                System.out.println("Error al cerrar el fichero");
+            }
+        }
     }
 
     /**
