@@ -179,14 +179,17 @@ public class Motor {
 
     /**
      * Metodo iniciar, para preparar el mapa
-     * TODO instanciación del parametro mapa y carga de datos con los ficheros pasados como parámetros
+     * instanciación del parametro mapa y carga de datos con los ficheros pasados como parámetros
      * @param ficheroMapa
      * @param ficheroItems
      * @param ficheroMonstruos
      * @param ficheroTrampas
      */
     public void iniciar(String ficheroMapa, String ficheroItems, String ficheroMonstruos, String ficheroTrampas) {
-
+        cargarMapa(ficheroMapa);
+        cargarItems(ficheroItems);
+        cargarMonstruos(ficheroMonstruos);
+        cargarTrampas(ficheroTrampas);
     }
 
     /**
