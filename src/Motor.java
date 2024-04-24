@@ -30,20 +30,48 @@ public class Motor {
 
     /**
      * Clase cargarMapa para construir la matriz de mapa a traves del fichero
-     * TODO leer los datos del fichero de mapa pasado por parametro y generar una matriz Sala[][]
+     * leer los datos del fichero de mapa pasado por parametro y generar una matriz Sala[][]
      *  con dimension Sala[fila][columna] e inicializar la sala con los valores con la descripción del fichero
      *  y los parámetros de maxItemsPorSala, maxMonstruosPorSala, maxTrampasPorSala.
      * @param ficheroMapa
      * @return sala generada
      */
-    Sala[][] cargarMapa(String ficheroMapa) {
 
-        return;
+     //Creo q esta bien, pero no estoy seguro
+    Sala[][] cargarMapa(String ficheroMapa) {
+        BufferedReader entrada = null;
+        try{
+            entrada = new BufferedReader(new FileReader(ficheroMapa));
+            String linea;
+            while((linea = entrada.readLine()) != null){
+                String[] partes = linea.split(";");
+                if(partes.length ==3){
+                    int filas = Integer.parseInt(partes[0]);
+                    int columnas = Integer.parseInt(partes[1]);
+                    String descripcion = partes[2];
+                    Sala sala = new Sala(descripcion, maxItemsPorSala, maxMonstruosPorSala, maxTrampasPorSala, filas, columnas);
+                    mapa[filas][columnas] = sala;
+                }
+            }
+        }catch (FileNotFoundException e){
+            System.out.println("No se ha encontrado el fichero");
+        }catch (IOException e){
+            System.out.println("Error de lectura");
+        }finally {
+            try{
+                if(entrada != null){
+                    entrada.close();
+                }
+            }catch (IOException e){
+                System.out.println("Error al cerrar el fichero");
+            }
+        }
+        return mapa;
     }
 
     /**
      * Metodo cargarItems para agregar los items del fichero en el mapa
-     * TODO Método para leer un fichero de items pasado por parámetro y según
+     * Método para leer un fichero de items pasado por parámetro y según
      *  la fila y columna introducir el item en la sala.
      * @param ficheroItems
      */
@@ -79,7 +107,7 @@ public class Motor {
 
     /**
      * Método cargarMonstruos para agregar los monstruos del fichero en el mapa
-     * TODO Método para leer un fichero de Monstruos pasado por parámetro y según
+     * Método para leer un fichero de Monstruos pasado por parámetro y según
      *  la fila y columna introducir el monstruo en la sala.
      * @param ficheroMonstruos
      */
@@ -116,7 +144,7 @@ public class Motor {
 
     /**
      * Método cargarTrampas para agregar las trampas del fichero en el mapa
-     * TODO Método para leer un fichero de trampas pasado por parámetro y según
+     * Método para leer un fichero de trampas pasado por parámetro y según
      *   la fila y columna introducir la trampa en la sala.
      * @param ficheroTrampas
      */
@@ -163,7 +191,7 @@ public class Motor {
 
     /**
      * Método getSala para obtener una sala concreta del mapa
-     * TODO devolver una Sala concreta del mapa
+     * devolver una Sala concreta del mapa
      * @param fila
      * @param columna
      * @return
@@ -174,7 +202,7 @@ public class Motor {
 
     /**
      * Método mostrarMapa para transformar el mapa en String
-     * TODO construir un String con la información contenida en el mapa
+     * construir un String con la información contenida en el mapa
      *  respetando el formato que aparece en la memoria de la práctica
      * @param fila
      * @param columna
