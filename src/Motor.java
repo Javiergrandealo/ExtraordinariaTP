@@ -203,7 +203,7 @@ public class Motor {
         return mapa[fila][columna];
     }
 
-    /**
+    /** TODO
      * Método mostrarMapa para transformar el mapa en String
      * construir un String con la información contenida en el mapa
      *  respetando el formato que aparece en la memoria de la práctica
