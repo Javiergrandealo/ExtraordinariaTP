@@ -17,6 +17,9 @@ public class Aventuras {
      * @param args
      */
     public static void main(String[] args) {
+        Motor motor = new Motor(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]));
+        motor.cargarMapa(args[5]);
+        motor.iniciar(args[5], args[6], args[7], args[8]);
 
     }
 

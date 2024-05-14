@@ -244,7 +244,8 @@ public class Motor {
      * @param random
      */
     public void jugar(Scanner teclado, Personaje personaje, Random random) {
-        iniciar(, null, null, null);
+        
+        
         
 
     }
