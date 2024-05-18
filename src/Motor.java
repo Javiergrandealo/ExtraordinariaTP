@@ -224,7 +224,8 @@ public class Motor {
      * @param columna
      * @return
      */
-    ////////////////////////////////TODO: ESTO ES UNA PRUEBA Y ESTA MAL////////////////////////////////////////
+    //////////////////////////////// TODO: ESTO ES UNA PRUEBA Y ESTA
+    //////////////////////////////// MAL////////////////////////////////////////
     public String mostrarMapa(int fila, int columna) {
         char[][] mapa = new char[fila + 1][columna + 1];
 
@@ -288,17 +289,68 @@ public class Motor {
     }
 
     /**
-     * Metodo seleccionarMovimiento para establecer las acciones que tome el jugador con su personaje
-     * TODO El desplazamiento del personaje se entiende como norte (N), sur (S), este (E) u oeste (O)
-     *  en este método hay que capturar por pantalla la acción que va a tomar el usuario de entre las posibles
-     *  para ello hay que tener en cuenta que se debe avisar al usuario si puede realizar o no la acción.
-     *  Se devolverá la sala destino a la que se ha movido el personaje.
+     * Metodo seleccionarMovimiento para establecer las acciones que tome el jugador
+     * con su personaje
+     * TODO El desplazamiento del personaje se entiende como norte (N), sur (S),
+     * este (E) u oeste (O)
+     * en este método hay que capturar por pantalla la acción que va a tomar el
+     * usuario de entre las posibles
+     * para ello hay que tener en cuenta que se debe avisar al usuario si puede
+     * realizar o no la acción.
+     * Se devolverá la sala destino a la que se ha movido el personaje.
+     * 
      * @param teclado
      * @param salaActual
      * @return
      */
+    ////////////////////// TODO: EL MOVIMIENTO ESTA HECHO SOLO PARA QUE NO SE SALGA
+    ////////////////////// DE LOS LIMITES DEL MAPA, AUN NO ESTAN LAS SALAS
+    ////////////////////// DISPONIBLES
+    /////////////////////////////////////// PORQUE NO SABMEOS HACER EL MOSTRAR
+    ////////////////////// MAPA////////////////////////////////////////
     public Sala seleccionarMovimiento(Scanner teclado, Sala salaActual) {
-
-        return
+        Sala nuevaSala;
+        do {
+            System.out.println("Introduce el movimiento (N, E, S, O):");
+            String movimiento = teclado.nextLine();
+            switch (movimiento) {
+                case "N":
+                    if (salaActual.getFila() == 0) {
+                        System.out.println("No puedes moverte al norte");
+                        nuevaSala = salaActual;
+                    } else {
+                        nuevaSala = mapa[salaActual.getFila() - 1][salaActual.getColumna()];
+                    }
+                    break;
+                case "S":
+                    if (salaActual.getFila() == mapa.length - 1) {
+                        System.out.println("No puedes moverte al sur");
+                        nuevaSala = salaActual;
+                    } else {
+                        nuevaSala = mapa[salaActual.getFila() + 1][salaActual.getColumna()];
+                    }
+                    break;
+                case "E":
+                    if (salaActual.getColumna() == mapa[0].length - 1) {
+                        System.out.println("No puedes moverte aleste");
+                        nuevaSala = salaActual;
+                    } else {
+                        nuevaSala = mapa[salaActual.getFila()][salaActual.getColumna() + 1];
+                    }
+                    break;
+                case "O":
+                    if (salaActual.getColumna() == 0) {
+                        System.out.println("No puedes moverte al oeste");
+                        nuevaSala = salaActual;
+                    } else {
+                        nuevaSala = mapa[salaActual.getFila()][salaActual.getColumna() - 1];
+                    }
+                    break;
+                default:
+                    System.out.println("Movimiento no válido");
+                    nuevaSala = salaActual;
+            }
+        } while (nuevaSala == salaActual);
+        return nuevaSala;
     }
 }
