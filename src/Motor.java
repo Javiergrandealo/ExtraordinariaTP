@@ -215,7 +215,7 @@ public class Motor {
     }
 
     /**
-     * TODO
+     * 
      * Método mostrarMapa para transformar el mapa en String
      * construir un String con la información contenida en el mapa
      * respetando el formato que aparece en la memoria de la práctica
@@ -224,6 +224,7 @@ public class Motor {
      * @param columna
      * @return
      */
+    ////////////////////////////////TODO: ESTO ES UNA PRUEBA Y ESTA MAL////////////////////////////////////////
     public String mostrarMapa(int fila, int columna) {
         char[][] mapa = new char[fila + 1][columna + 1];
 
