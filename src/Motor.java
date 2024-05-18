@@ -14,6 +14,7 @@ public class Motor {
 
     /**
      * Constructor Clase Motor
+     * 
      * @param filas
      * @param columnas
      * @param maxItemsPorSala
@@ -30,39 +31,43 @@ public class Motor {
 
     /**
      * Clase cargarMapa para construir la matriz de mapa a traves del fichero
-     * leer los datos del fichero de mapa pasado por parametro y generar una matriz Sala[][]
-     *  con dimension Sala[fila][columna] e inicializar la sala con los valores con la descripción del fichero
-     *  y los parámetros de maxItemsPorSala, maxMonstruosPorSala, maxTrampasPorSala.
+     * leer los datos del fichero de mapa pasado por parametro y generar una matriz
+     * Sala[][]
+     * con dimension Sala[fila][columna] e inicializar la sala con los valores con
+     * la descripción del fichero
+     * y los parámetros de maxItemsPorSala, maxMonstruosPorSala, maxTrampasPorSala.
+     * 
      * @param ficheroMapa
      * @return sala generada
      */
 
-     //Creo q esta bien, pero no estoy seguro
+    // Creo q esta bien, pero no estoy seguro
     Sala[][] cargarMapa(String ficheroMapa) {
         BufferedReader entrada = null;
-        try{
+        try {
             entrada = new BufferedReader(new FileReader(ficheroMapa));
             String linea;
-            while((linea = entrada.readLine()) != null){
+            while ((linea = entrada.readLine()) != null) {
                 String[] partes = linea.split(";");
-                if(partes.length ==3){
+                if (partes.length == 3) {
                     int filas = Integer.parseInt(partes[0]);
                     int columnas = Integer.parseInt(partes[1]);
                     String descripcion = partes[2];
-                    Sala sala = new Sala(descripcion, maxItemsPorSala, maxMonstruosPorSala, maxTrampasPorSala, filas, columnas);
+                    Sala sala = new Sala(descripcion, maxItemsPorSala, maxMonstruosPorSala, maxTrampasPorSala, filas,
+                            columnas);
                     mapa[filas][columnas] = sala;
                 }
             }
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("No se ha encontrado el fichero");
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Error de lectura");
-        }finally {
-            try{
-                if(entrada != null){
+        } finally {
+            try {
+                if (entrada != null) {
                     entrada.close();
                 }
-            }catch (IOException e){
+            } catch (IOException e) {
                 System.out.println("Error al cerrar el fichero");
             }
         }
@@ -72,15 +77,16 @@ public class Motor {
     /**
      * Metodo cargarItems para agregar los items del fichero en el mapa
      * Método para leer un fichero de items pasado por parámetro y según
-     *  la fila y columna introducir el item en la sala.
+     * la fila y columna introducir el item en la sala.
+     * 
      * @param ficheroItems
      */
     private void cargarItems(String ficheroItems) {
         BufferedReader entrada = null;
-        try{
+        try {
             entrada = new BufferedReader(new FileReader(ficheroItems));
             String linea;
-            while((linea = entrada.readLine()) != null){
+            while ((linea = entrada.readLine()) != null) {
                 String[] partes = linea.split(";");
                 int fila = Integer.parseInt(partes[0]);
                 int columna = Integer.parseInt(partes[1]);
@@ -90,16 +96,16 @@ public class Motor {
                 Item item = new Item(descripcion, valor, peso);
                 mapa[fila][columna].agregarItem(item);
             }
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("No se ha encontrado el fichero");
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Error de lectura");
-        }finally {
-            try{
-                if(entrada != null){
+        } finally {
+            try {
+                if (entrada != null) {
                     entrada.close();
                 }
-            }catch (IOException e){
+            } catch (IOException e) {
                 System.out.println("Error al cerrar el fichero");
             }
         }
@@ -108,15 +114,16 @@ public class Motor {
     /**
      * Método cargarMonstruos para agregar los monstruos del fichero en el mapa
      * Método para leer un fichero de Monstruos pasado por parámetro y según
-     *  la fila y columna introducir el monstruo en la sala.
+     * la fila y columna introducir el monstruo en la sala.
+     * 
      * @param ficheroMonstruos
      */
     private void cargarMonstruos(String ficheroMonstruos) {
         BufferedReader entrada = null;
-        try{
+        try {
             entrada = new BufferedReader(new FileReader(ficheroMonstruos));
             String linea;
-            while((linea = entrada.readLine()) != null){
+            while ((linea = entrada.readLine()) != null) {
                 String[] partes = linea.split(";");
                 int fila = Integer.parseInt(partes[0]);
                 int columna = Integer.parseInt(partes[1]);
@@ -127,16 +134,16 @@ public class Motor {
                 Monstruo monstruo = new Monstruo(descripcion, vida, ataque, defensa);
                 mapa[fila][columna].agregarMonstruo(monstruo);
             }
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("No se ha encontrado el fichero");
-        }catch (IOException e){
-            System.out.println("Error de lectura");    
-        }finally {
-            try{
-                if(entrada != null){
+        } catch (IOException e) {
+            System.out.println("Error de lectura");
+        } finally {
+            try {
+                if (entrada != null) {
                     entrada.close();
                 }
-            }catch (IOException e){
+            } catch (IOException e) {
                 System.out.println("Error al cerrar el fichero");
             }
         }
@@ -145,15 +152,16 @@ public class Motor {
     /**
      * Método cargarTrampas para agregar las trampas del fichero en el mapa
      * Método para leer un fichero de trampas pasado por parámetro y según
-     *   la fila y columna introducir la trampa en la sala.
+     * la fila y columna introducir la trampa en la sala.
+     * 
      * @param ficheroTrampas
      */
     private void cargarTrampas(String ficheroTrampas) {
         BufferedReader entrada = null;
-        try{
+        try {
             entrada = new BufferedReader(new FileReader(ficheroTrampas));
             String linea;
-            while((linea = entrada.readLine())!=null){
+            while ((linea = entrada.readLine()) != null) {
                 String[] partes = linea.split(";");
                 int fila = Integer.parseInt(partes[0]);
                 int columna = Integer.parseInt(partes[1]);
@@ -162,16 +170,16 @@ public class Motor {
                 Trampa trampa = new Trampa(descripcion, dano);
                 mapa[fila][columna].agregarTrampa(trampa);
             }
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("No se ha encontrado el fichero");
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Error de lectura");
-        }finally {
-            try{
-                if(entrada != null){
+        } finally {
+            try {
+                if (entrada != null) {
                     entrada.close();
                 }
-            }catch (IOException e){
+            } catch (IOException e) {
                 System.out.println("Error al cerrar el fichero");
             }
         }
@@ -179,7 +187,9 @@ public class Motor {
 
     /**
      * Metodo iniciar, para preparar el mapa
-     * instanciación del parametro mapa y carga de datos con los ficheros pasados como parámetros
+     * instanciación del parametro mapa y carga de datos con los ficheros pasados
+     * como parámetros
+     * 
      * @param ficheroMapa
      * @param ficheroItems
      * @param ficheroMonstruos
@@ -195,6 +205,7 @@ public class Motor {
     /**
      * Método getSala para obtener una sala concreta del mapa
      * devolver una Sala concreta del mapa
+     * 
      * @param fila
      * @param columna
      * @return
@@ -203,50 +214,75 @@ public class Motor {
         return mapa[fila][columna];
     }
 
-    /** TODO
+    /**
+     * TODO
      * Método mostrarMapa para transformar el mapa en String
      * construir un String con la información contenida en el mapa
-     *  respetando el formato que aparece en la memoria de la práctica
+     * respetando el formato que aparece en la memoria de la práctica
+     * 
      * @param fila
      * @param columna
      * @return
      */
     public String mostrarMapa(int fila, int columna) {
-        String mapa = "";
-        for (int i = 0; i < fila; i++) {
-            for (int j = 0; j < columna; j++) {
-                mapa += this.mapa[i][j].toString();
+        char[][] mapa = new char[fila + 1][columna + 1];
+
+        // Llenar todo el mapa con '-'
+        for (int i = 0; i <= fila; i++) {
+            for (int j = 0; j <= columna; j++) {
+                mapa[i][j] = '-';
             }
-            mapa += "\n";
         }
 
-    return mapa;
-}
+        // Rellenar el interior con 'a'
+        for (int i = 1; i < fila; i++) {
+            for (int j = 1; j < columna; j++) {
+                mapa[i][j] = 'a';
+            }
+        }
+
+        // Convertir el mapa a String
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i <= fila; i++) {
+            for (int j = 0; j <= columna; j++) {
+                sb.append(mapa[i][j]);
+            }
+            sb.append("\n");
+        }
+
+        return sb.toString();
+
+    }
 
     /**
      * Método jugar para empezar a jugar con el personaje
      * TODO método complejo en el que hay que seguir la siguiente ejecución:
-     *  1. mostrar el mapa por pantalla
-     *  2. Obtener la sala actual y mientras el personaje tenga vida y no haya llegado a la casilla final
-     *  3. Durante una jugada mostrar la descripcion de la sala actual
-     *  4. Comprobar si hay monstruos en la sala y si es así entrar en combate
-     *  4.a El combate acaba cuando la vida del monstruo o la vida del personaje llega a 0
-     *  4.b cada turno en el combate el personaje ataca al monstruo y restamos su vida
-     *  4.c Si la vida no llega a 0 el monstruo hace daño al personaje
-     *  5. Las salas pueden tener trampas
-     *  5.a Si hay trampa hay que comprobar si un valor aleatorio entre 1 y 50 es inferior a la destreza del personaje, si es asi esquiva la trampa
-     *  5.b Si no esquiva la trampa el personaje recibe daño
-     *  5.c al igual que en combate hay que tener en cuenta si la vida del personaje lleva a 0
-     *  6. Por último puede haber items en la sala, en cuyo caso habrá que preguntar al usuario qué ítems quiere guardarse (o NINGUNO para terminar)
-     *  ¡IMPORTANTE! se debe mostrar por pantalla avisos para cada opción dando feedback al usuario de todo lo que ocurra (consultar enunciado)
+     * 1. mostrar el mapa por pantalla
+     * 2. Obtener la sala actual y mientras el personaje tenga vida y no haya
+     * llegado a la casilla final
+     * 3. Durante una jugada mostrar la descripcion de la sala actual
+     * 4. Comprobar si hay monstruos en la sala y si es así entrar en combate
+     * 4.a El combate acaba cuando la vida del monstruo o la vida del personaje
+     * llega a 0
+     * 4.b cada turno en el combate el personaje ataca al monstruo y restamos su
+     * vida
+     * 4.c Si la vida no llega a 0 el monstruo hace daño al personaje
+     * 5. Las salas pueden tener trampas
+     * 5.a Si hay trampa hay que comprobar si un valor aleatorio entre 1 y 50 es
+     * inferior a la destreza del personaje, si es asi esquiva la trampa
+     * 5.b Si no esquiva la trampa el personaje recibe daño
+     * 5.c al igual que en combate hay que tener en cuenta si la vida del personaje
+     * lleva a 0
+     * 6. Por último puede haber items en la sala, en cuyo caso habrá que preguntar
+     * al usuario qué ítems quiere guardarse (o NINGUNO para terminar)
+     * ¡IMPORTANTE! se debe mostrar por pantalla avisos para cada opción dando
+     * feedback al usuario de todo lo que ocurra (consultar enunciado)
+     * 
      * @param teclado
      * @param personaje
      * @param random
      */
     public void jugar(Scanner teclado, Personaje personaje, Random random) {
-        
-        
-        
 
     }
 
