@@ -224,7 +224,7 @@ public class Motor {
      * @param columna
      * @return
      */
-    //////////////////////////////// TODO: ESTO ES UNA PRUEBA Y ESTA
+    //////////////////////////////// FIXME: ESTO ES UNA PRUEBA Y ESTA MAl, es para ver como se generaba el mapa
     //////////////////////////////// MAL////////////////////////////////////////
     public String mostrarMapa(int fila, int columna) {
         char[][] mapa = new char[fila + 1][columna + 1];
@@ -291,7 +291,7 @@ public class Motor {
     /**
      * Metodo seleccionarMovimiento para establecer las acciones que tome el jugador
      * con su personaje
-     * TODO El desplazamiento del personaje se entiende como norte (N), sur (S),
+     * El desplazamiento del personaje se entiende como norte (N), sur (S),
      * este (E) u oeste (O)
      * en este método hay que capturar por pantalla la acción que va a tomar el
      * usuario de entre las posibles
@@ -303,7 +303,7 @@ public class Motor {
      * @param salaActual
      * @return
      */
-    ////////////////////// TODO: EL MOVIMIENTO ESTA HECHO SOLO PARA QUE NO SE SALGA
+    ////////////////////// FIXME: EL MOVIMIENTO ESTA HECHO SOLO PARA QUE NO SE SALGA
     ////////////////////// DE LOS LIMITES DEL MAPA, AUN NO ESTAN LAS SALAS
     ////////////////////// DISPONIBLES
     /////////////////////////////////////// PORQUE NO SABMEOS HACER EL MOSTRAR
