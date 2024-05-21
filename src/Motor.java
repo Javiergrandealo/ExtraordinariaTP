@@ -308,11 +308,6 @@ public class Motor {
      * @param salaActual
      * @return
      */
-    ////////////////////// FIXME: EL MOVIMIENTO ESTA HECHO SOLO PARA QUE NO SE SALGA
-    ////////////////////// DE LOS LIMITES DEL MAPA, AUN NO ESTAN LAS SALAS
-    ////////////////////// DISPONIBLES
-    /////////////////////////////////////// PORQUE NO SABMEOS HACER EL MOSTRAR
-    ////////////////////// MAPA////////////////////////////////////////
     public Sala seleccionarMovimiento(Scanner teclado, Sala salaActual) {
         Sala nuevaSala;
         do {
@@ -323,23 +318,35 @@ public class Motor {
                     if (salaActual.getFila() == 0) {
                         System.out.println("No puedes moverte al norte");
                         nuevaSala = salaActual;
+                    } else if(!existeSala(salaActual.getFila(), salaActual.getColumna())){
+                        System.out.println("No puedes moverte al norte");
+                        nuevaSala = salaActual;
                     } else {
                         nuevaSala = mapa[salaActual.getFila() - 1][salaActual.getColumna()];
                     }
+                    
                     break;
                 case "S":
                     if (salaActual.getFila() == mapa.length - 1) {
                         System.out.println("No puedes moverte al sur");
                         nuevaSala = salaActual;
-                    } else {
+                    }else if(!existeSala(salaActual.getFila(), salaActual.getColumna())){
+                        System.out.println("No puedes moverte al sur");
+                        nuevaSala = salaActual;
+                    }
+                    else {
                         nuevaSala = mapa[salaActual.getFila() + 1][salaActual.getColumna()];
                     }
                     break;
                 case "E":
                     if (salaActual.getColumna() == mapa[0].length - 1) {
-                        System.out.println("No puedes moverte aleste");
+                        System.out.println("No puedes moverte al este");
                         nuevaSala = salaActual;
-                    } else {
+                    } else if(!existeSala(salaActual.getFila(), salaActual.getColumna())){
+                        System.out.println("No puedes moverte al este");
+                        nuevaSala = salaActual;
+                    }
+                    else {
                         nuevaSala = mapa[salaActual.getFila()][salaActual.getColumna() + 1];
                     }
                     break;
@@ -347,12 +354,16 @@ public class Motor {
                     if (salaActual.getColumna() == 0) {
                         System.out.println("No puedes moverte al oeste");
                         nuevaSala = salaActual;
-                    } else {
+                    } else if(!existeSala(salaActual.getFila(), salaActual.getColumna())){
+                        System.out.println("No puedes moverte al oeste");
+                        nuevaSala = salaActual;
+                    }
+                    else {
                         nuevaSala = mapa[salaActual.getFila()][salaActual.getColumna() - 1];
                     }
                     break;
                 default:
-                    System.out.println("Movimiento no válido");
+                    System.out.println("Movimiento no válido. Comprueba que hayas introducido N, E, S o O");
                     nuevaSala = salaActual;
             }
         } while (nuevaSala == salaActual);
