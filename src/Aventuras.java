@@ -1,5 +1,9 @@
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.Buffer;
 import java.time.LocalDate;
 import java.util.Random;
 import java.util.Scanner;
@@ -25,13 +29,23 @@ public class Aventuras {
 
     /**
      * Metodo guardarPuntuación en fichero
-     * TODO abrir y guardar en el fichero pasado como parametro el personaje
+     * abrir y guardar en el fichero pasado como parametro el personaje
      *  siguiendo el formato descrito en la memoria de la práctica
      * @param ficheroPuntuaciones
      * @param jugador
      */
     private static void guardarPuntuacion(String ficheroPuntuaciones, Personaje jugador) {
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        try {
+            bw = new BufferedWriter(new FileWriter(ficheroPuntuaciones, true));
+            bw.write(LocalDate.now() + "\t" + jugador.toString() + ", " + jugador.getValorMochila() + " monedas");
+            bw.newLine();
+        } catch (IOException e) {
+            System.out.println("Error al guardar la puntuación");
+            e.printStackTrace();
 
+    }
     }
 
     /**
