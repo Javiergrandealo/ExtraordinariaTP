@@ -36,7 +36,6 @@ public class Aventuras {
      */
     private static void guardarPuntuacion(String ficheroPuntuaciones, Personaje jugador) {
         BufferedWriter bw = null;
-        FileWriter fw = null;
         try {
             bw = new BufferedWriter(new FileWriter(ficheroPuntuaciones, true));
             bw.write(LocalDate.now() + "\t" + jugador.toString() + ", " + jugador.getValorMochila() + " monedas");
