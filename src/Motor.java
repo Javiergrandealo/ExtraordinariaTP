@@ -224,41 +224,46 @@ public class Motor {
      * @param columna
      * @return
      */
-    //////////////////////////////// FIXME: ESTO ES UNA PRUEBA Y ESTA MAl, es para ver como se generaba el mapa
-    //////////////////////////////// MAL////////////////////////////////////////
+    
+    private boolean existeSala(int fila, int columna) { //metodo auxuliar para saber si existe una sala en la posicion, ayuda a la comprensón del metodo mostrarMapa
+        return mapa[fila][columna] != null;
+    }
+
+
     public String mostrarMapa(int fila, int columna) {
-        char[][] mapa = new char[fila + 1][columna + 1];
+        int filasMapa = mapa.length;
+        int columnasMapa = mapa[0].length;
+        String a = "";
 
-        // Llenar todo el mapa con '-'
-        for (int i = 0; i <= fila; i++) {
-            for (int j = 0; j <= columna; j++) {
-                mapa[i][j] = '-';
-            }
+        a += "╔";
+        for (int i = 0; i < columnasMapa; i++) {
+            a += "═";
         }
-
-        // Rellenar el interior con 'a'
-        for (int i = 1; i < fila; i++) {
-            for (int j = 1; j < columna; j++) {
-                mapa[i][j] = 'a';
+        a += "╗\n";
+        for (int i = 0; i < filasMapa; i++) {
+            a += "║";
+            for (int j = 0; j < columnasMapa; j++) {
+                if(i == fila && j== columna){
+                    a += "@"; //posicion del personaje
+                }else if (existeSala(i, j)) {
+                    a += "░";
+                } else {
+                    a += " ";
+                }
             }
+            a += "║\n";
         }
-
-        // Convertir el mapa a String
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i <= fila; i++) {
-            for (int j = 0; j <= columna; j++) {
-                sb.append(mapa[i][j]);
-            }
-            sb.append("\n");
+        a += "╚";
+        for (int i = 0; i < columnasMapa; i++) {
+            a += "═";
         }
-
-        return sb.toString();
-
+        a += "╝\n";
+        return a;
     }
 
     /**
      * Método jugar para empezar a jugar con el personaje
-     * TODO método complejo en el que hay que seguir la siguiente ejecución:
+     * TODO: método complejo en el que hay que seguir la siguiente ejecución:
      * 1. mostrar el mapa por pantalla
      * 2. Obtener la sala actual y mientras el personaje tenga vida y no haya
      * llegado a la casilla final
