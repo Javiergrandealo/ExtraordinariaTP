@@ -138,6 +138,7 @@ public class Motor {
                 int ataque = Integer.parseInt(partes[4]);
                 int defensa = Integer.parseInt(partes[5]);
                 Monstruo monstruo = new Monstruo(descripcion, vida, ataque, defensa);
+                
                 mapa[fila][columna].agregarMonstruo(monstruo);
             }
         } catch (FileNotFoundException e) {
@@ -304,6 +305,7 @@ public class Motor {
         while (personaje.getVida()>0 && salaActual.getFila() != mapa.length-1 && salaActual.getColumna() != mapa[0].length-1 && !salir) {
             System.out.println(salaActual.getDescripcion());
             if(salaActual.hayMonstruos()){
+
                 Monstruo monstruo = salaActual.seleccionarMonstruo(teclado);
                 while(personaje.getVida()>0 && monstruo.getVida()>0){
                     monstruo.recibirDanyo(personaje.getAtaque());

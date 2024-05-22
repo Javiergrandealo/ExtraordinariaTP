@@ -28,8 +28,7 @@ public class Aventuras {
         Scanner sc = new Scanner(System.in);
         Motor motor = new Motor(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]),
                 Integer.parseInt(args[3]), Integer.parseInt(args[4]));
-        Personaje jugador = null;
-        jugador.crearPersonaje(sc);
+        Personaje jugador =Personaje.crearPersonaje(sc) ;
         motor.cargarMapa(args[5]);
         motor.iniciar(args[5], args[6], args[7], args[8]);
         motor.jugar(sc, jugador, r);
