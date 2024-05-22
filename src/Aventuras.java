@@ -24,6 +24,7 @@ public class Aventuras {
      * @param args
      */
     public static void main(String[] args) {
+        Random r = new Random();
         Scanner sc = new Scanner(System.in);
         Motor motor = new Motor(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]),
                 Integer.parseInt(args[3]), Integer.parseInt(args[4]));
@@ -31,7 +32,7 @@ public class Aventuras {
         jugador.crearPersonaje(sc);
         motor.cargarMapa(args[5]);
         motor.iniciar(args[5], args[6], args[7], args[8]);
-        System.out.println(motor.mostrarMapa(0,0));
+        motor.jugar(sc, jugador, r);
         
 
     }

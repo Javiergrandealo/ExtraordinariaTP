@@ -272,11 +272,11 @@ public class Motor {
     /**
      * Método jugar para empezar a jugar con el personaje
      * TODO: método complejo en el que hay que seguir la siguiente ejecución:
-     * 1. mostrar el mapa por pantalla
+     * 1. mostrar el mapa por pantalla HECHO
      * 2. Obtener la sala actual y mientras el personaje tenga vida y no haya
-     * llegado a la casilla final
-     * 3. Durante una jugada mostrar la descripcion de la sala actual
-     * 4. Comprobar si hay monstruos en la sala y si es así entrar en combate
+     * llegado a la casilla final HECHO
+     * 3. Durante una jugada mostrar la descripcion de la sala actual HECHO
+     * 4. Comprobar si hay monstruos en la sala y si es así entrar en combate HECHO
      * 4.a El combate acaba cuando la vida del monstruo o la vida del personaje
      * llega a 0
      * 4.b cada turno en el combate el personaje ataca al monstruo y restamos su
@@ -298,7 +298,26 @@ public class Motor {
      * @param random
      */
     public void jugar(Scanner teclado, Personaje personaje, Random random) {
-        mostrarMapa(0,0);
+        boolean salir = false;
+        System.out.println(mostrarMapa(0,0));
+        Sala salaActual = mapa[0][0];
+        while (personaje.getVida()>0 && salaActual.getFila() != mapa.length-1 && salaActual.getColumna() != mapa[0].length-1 && !salir) {
+            System.out.println(salaActual.getDescripcion());
+            if(salaActual.hayMonstruos()){
+                Monstruo monstruo = salaActual.seleccionarMonstruo(teclado);
+                while(personaje.getVida()>0 && monstruo.getVida()>0){
+                    monstruo.recibirDanyo(personaje.getAtaque());
+                    if(monstruo.getVida()>0){
+                        personaje.recibirDanyo(monstruo.getAtaque());
+                    }
+                    if (personaje.getVida() <= 0) {
+                        System.out.println("El mounstro te ha eliminado, fin del juego");
+                        salir = true;
+                    }
+                }
+
+            }
+        }
 
     }
 
