@@ -31,6 +31,7 @@ public class Aventuras {
         jugador.crearPersonaje(sc);
         motor.cargarMapa(args[5]);
         motor.iniciar(args[5], args[6], args[7], args[8]);
+        System.out.println(motor.mostrarMapa(0,0));
         
 
     }

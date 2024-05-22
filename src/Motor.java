@@ -52,6 +52,8 @@ public class Motor {
                 if (partes.length == 3) {
                     int filas = Integer.parseInt(partes[0]);
                     int columnas = Integer.parseInt(partes[1]);
+                    if (filas > 0) filas--;
+                    if (columnas > 0) columnas--;
                     String descripcion = partes[2];
                     Sala sala = new Sala(descripcion, maxItemsPorSala, maxMonstruosPorSala, maxTrampasPorSala, filas,
                             columnas);
@@ -89,9 +91,11 @@ public class Motor {
             while ((linea = entrada.readLine()) != null) {
                 String[] partes = linea.split(";");
                 int fila = Integer.parseInt(partes[0]);
+                if (fila > 0) fila--;
                 int columna = Integer.parseInt(partes[1]);
+                if (columna > 0) columna--;
                 String descripcion = partes[2];
-                int valor = Integer.parseInt(partes[3]);
+                Double valor = Double.parseDouble(partes[3]);
                 int peso = Integer.parseInt(partes[4]);
                 Item item = new Item(descripcion, valor, peso);
                 mapa[fila][columna].agregarItem(item);
@@ -126,7 +130,9 @@ public class Motor {
             while ((linea = entrada.readLine()) != null) {
                 String[] partes = linea.split(";");
                 int fila = Integer.parseInt(partes[0]);
+                if (fila > 0) fila--;
                 int columna = Integer.parseInt(partes[1]);
+                if (columna > 0) columna--;
                 String descripcion = partes[2];
                 int vida = Integer.parseInt(partes[3]);
                 int ataque = Integer.parseInt(partes[4]);
@@ -164,7 +170,9 @@ public class Motor {
             while ((linea = entrada.readLine()) != null) {
                 String[] partes = linea.split(";");
                 int fila = Integer.parseInt(partes[0]);
+                if (fila > 0) fila--;
                 int columna = Integer.parseInt(partes[1]);
+                if (columna > 0) columna--;
                 String descripcion = partes[2];
                 int dano = Integer.parseInt(partes[3]);
                 Trampa trampa = new Trampa(descripcion, dano);
