@@ -39,17 +39,16 @@ public class Sala {
      * @return
      */
     public boolean agregarItem(Item item) {
-        boolean agregar = false;
         for (int i = 0; i < items.length; i++) {
             if (items[i] == item) {
-                agregar = false;
+                return false;
             }else if (items[i] == null) {
                 items[i] = item;
-                agregar = true;
+                return true;
             }
         }
 
-            return agregar;
+            return false;
     }
 
     /**
@@ -60,15 +59,14 @@ public class Sala {
      * @return
      */
     public boolean agregarMonstruo(Monstruo monstruo) {
-        boolean agregar = false;
         for (int i = 0; i < monstruos.length; i++) {
             if (monstruos[i] == monstruo) {
-                agregar = false;
+                return false;
             }else if (monstruos[i] == null) {
                 monstruos[i] = monstruo;
-                agregar = true;
+                return true;
             }
-        }return agregar;
+        }return false;
     }
 
     /**
@@ -79,15 +77,14 @@ public class Sala {
      * @return
      */
     public boolean agregarTrampa(Trampa trampa) {
-        boolean agregar = false;
         for (int i = 0; i < trampas.length; i++) {
             if (trampas[i] == trampa) {
-                agregar = false;
+                return false;
             }else if (trampas[i] == null) {
                 trampas[i] = trampa;
-                agregar = true;
+                return true;
             }
-        }return agregar;
+        }return false;
     }
 
     /**
