@@ -15,7 +15,7 @@
             "name": "Launch with Arguments",
             "request": "launch",
             "mainClass": "",
-            "args": ["4","3","5","3","2","salas.txt","items.txt","monstruos.txt", "trampas.txt", "puntuaciones.txt"]
+            "args": ["4","3","5","3","2","items.txt","items.txt","monstruos.txt", "trampas.txt", "puntuaciones.txt"]
         },
         {
             "type": "java",
