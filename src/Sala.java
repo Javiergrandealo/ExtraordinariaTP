@@ -265,7 +265,10 @@ public class Sala {
      */
     public Item seleccionarItem(Scanner teclado) {
         listarItems();
-        String item = Utilidades.leerCadena(teclado, "Selecciona un item: ");
+        String item = Utilidades.leerCadena(teclado, "Escribe la descripción del item que quieres coger (NINGUNO para cancelar):");
+        if(item.equals("NINGUNO")){
+            return null;
+        }
         return buscarItem(item);
     }
 

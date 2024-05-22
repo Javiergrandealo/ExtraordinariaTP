@@ -315,11 +315,39 @@ public class Motor {
                         salir = true;
                     }
                 }
-
             }
+                
+                if(salaActual.hayTrampas()){
+                    for (int i = 0; i < salaActual.getTrampas().length; i++) {
+                        if(salaActual.getTrampas()[i] != null){
+                            if(random.nextInt(50) < personaje.getDestreza()){
+                                System.out.println("Has esquivado la trampa");
+                            }else{
+                                personaje.recibirDanyo(salaActual.getTrampas()[i].getDanyo());
+                                if (personaje.getVida() <= 0) {
+                                    System.out.println("Has caido en una trampa y no has sobrevivido, fin del juego");
+                                    salir = true;
+                                }
+                            }
+                        }
+                    }
+                }
+                if(salaActual.hayItems()){
+                    Item item = salaActual.seleccionarItem(teclado);
+                    while(item != null){
+                        if(personaje.anyadirItem(item)){
+                            System.out.println("Has añadido el item a tu mochila");
+                        }else{
+                            System.out.println("No puedes añadir el item a tu mochila");
+                        }
+                        item = salaActual.seleccionarItem(teclado);
+                    }
+                }
+                seleccionarMovimiento(teclado, salaActual);
         }
-
     }
+
+    
 
     /**
      * Metodo seleccionarMovimiento para establecer las acciones que tome el jugador
