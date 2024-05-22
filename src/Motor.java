@@ -290,6 +290,7 @@ public class Motor {
      * @param random
      */
     public void jugar(Scanner teclado, Personaje personaje, Random random) {
+        mostrarMapa(0,0);
 
     }
 
