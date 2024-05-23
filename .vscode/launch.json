@@ -14,7 +14,7 @@
             "type": "java",
             "name": "Launch with Arguments",
             "request": "launch",
-            "mainClass": "",
+            "mainClass": "Aventuras",
             "args": ["4","3","5","3","2","C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\salas.txt","C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\items.txt","C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\monstruos.txt", "C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\trampas.txt", "C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\puntuaciones.txt"]
         },
         {

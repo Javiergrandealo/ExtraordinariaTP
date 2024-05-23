@@ -64,10 +64,7 @@ public class Item {
     @Override
 //CUIDADO: NO SABEMOS COMO FUNCIONA LOS DE OBJECT ASI QUE NO SABEMOS SI ESTA BIEN, PREGUNTAR EN TUTORIA
     public boolean equals(Object obj) {
-        if (obj instanceof Item) {
             Item item = (Item) obj;
             return item.getDescripcion().equals(descripcion) && item.getPeso() == peso && item.getValor() == valor;
-        }
-        return false;
     }
 }

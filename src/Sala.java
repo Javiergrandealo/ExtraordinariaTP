@@ -11,6 +11,7 @@ public class Sala {
 
     private final int fila;
     private final int columna;
+    private int numeroMonstruos, numeroTrampas, numeroItems;
 
     /**
      * Constructor de clase para inicializar los atributos de clase
@@ -39,16 +40,17 @@ public class Sala {
      * @return
      */
     public boolean agregarItem(Item item) {
-        for (int i = 0; i < items.length; i++) {
+        boolean resul = true;
+        for (int i = 0; i < numeroItems; i++) {
             if (items[i] == item) {
-                return false;
-            }else if (items[i] == null) {
-                items[i] = item;
-                return true;
+                resul = false;
             }
         }
-
-            return false;
+        if (resul) {
+            items[numeroItems] = item;
+            numeroItems++;
+        }
+        return resul;
     }
 
     /**
@@ -59,14 +61,19 @@ public class Sala {
      * @return
      */
     public boolean agregarMonstruo(Monstruo monstruo) {
-        for (int i = 0; i < monstruos.length; i++) {
-            if (monstruos[i] == monstruo) {
-                return false;
-            }else if (monstruos[i] == null) {
-                monstruos[i] = monstruo;
-                return true;
-            }
-        }return false;
+        boolean resultado = true;
+    for (int i = 0; i < numeroMonstruos; i++) {
+        if (monstruos[i] == monstruo) {
+            resultado = false;
+        }
+    }
+    if (resultado && numeroMonstruos < monstruos.length) {
+        monstruos[numeroMonstruos] = monstruo;
+        numeroMonstruos++;
+    } else {
+        resultado = false;
+    }
+    return resultado;
     }
 
     /**
@@ -77,14 +84,17 @@ public class Sala {
      * @return
      */
     public boolean agregarTrampa(Trampa trampa) {
-        for (int i = 0; i < trampas.length; i++) {
+        boolean resultado = true;
+        for (int i = 0; i < numeroTrampas; i++) {
             if (trampas[i] == trampa) {
-                return false;
-            }else if (trampas[i] == null) {
-                trampas[i] = trampa;
-                return true;
+                resultado = false;
             }
-        }return false;
+        }
+        if (resultado) {
+            trampas[numeroTrampas] = trampa;
+            numeroTrampas++;
+        }
+        return resultado;
     }
 
     /**
@@ -101,14 +111,7 @@ public class Sala {
      * @return
      */
     public boolean hayMonstruos() {
-        boolean hayMonstruos = false;
-        for (int i = 0; i < monstruos.length; i++) {
-            if (monstruos[i] != null) {
-                hayMonstruos = true;
-                
-            }
-        }
-        return hayMonstruos;
+        return numeroMonstruos > 0;
     }
 
     /**
@@ -132,7 +135,7 @@ public class Sala {
      */
     public Monstruo buscarMonstruo(String nombreMonstruo) {
         Monstruo monstruo = null;
-        for (int i = 0; i < monstruos.length; i++) {
+        for (int i = 0; i < numeroMonstruos; i++) {
             if (monstruos[i].getNombre().equals(nombreMonstruo)) {
                 monstruo = monstruos[i];
             }
@@ -145,10 +148,12 @@ public class Sala {
      * mostrar por pantalla la info de los monstruos utilizando los métodos implementados en la clase "monstruo"
      */
     private void listarMonstruos() {
+        System.out.println("Monstruos en la sala: ");
         for (int i = 0; i < monstruos.length; i++) {
-            System.out.println(monstruos[i].toString());
+            if (monstruos[i] != null) {
+                System.out.println(monstruos[i].toString());
+            }
         }
-
     }
 
     /**
@@ -157,10 +162,12 @@ public class Sala {
      * @param nombreMonstruo
      */
     public void eliminarMonstruo(String nombreMonstruo) {
-        for (int i = 0; i < monstruos.length; i++) {
-            if (monstruos[i].getNombre().equals(nombreMonstruo)) {
-                monstruos[i] = null;
-            }
+        int pos = 0;
+        while (!(monstruos[pos].getNombre().equals(nombreMonstruo)) && monstruos[pos] != null) {
+            pos++;
+        }
+        for (int i = pos; i < numeroMonstruos; i++) {
+            monstruos[i] = monstruos[1 + i];
         }
     }
 
@@ -170,13 +177,7 @@ public class Sala {
      * @return
      */
     public boolean hayTrampas() {
-        boolean hayTrampas = false;
-        for (int i = 0; i < trampas.length; i++) {
-            if (trampas[i] != null) {
-                hayTrampas = true;
-            }
-        }
-        return hayTrampas;
+        return numeroTrampas > 0;
     }
 
     /**
@@ -201,13 +202,7 @@ public class Sala {
      * @return
      */
     public boolean hayItems() {
-        boolean hayItems = false;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null) {
-                hayItems = true;
-            }
-        }
-        return hayItems;
+        return numeroItems > 0;
     }
 
     /**
@@ -219,7 +214,7 @@ public class Sala {
      */
     public Item buscarItem(String descripcion) {
         Item item = null;
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < numeroItems; i++) {
             if (items[i].getDescripcion().equals(descripcion)) {
                 item = items[i];
             }
@@ -261,12 +256,15 @@ public class Sala {
      * @return
      */
     public Item seleccionarItem(Scanner teclado) {
+        Item item;
+        String string;
+        System.out.println("Items que se encuentran en la sala"+ descripcion+":");
         listarItems();
-        String item = Utilidades.leerCadena(teclado, "Escribe la descripción del item que quieres coger (NINGUNO para cancelar):");
-        if(item.equals("NINGUNO")){
-            return null;
-        }
-        return buscarItem(item);
+        do {
+            string = Utilidades.leerCadena(teclado, "Escribe la descripción del item que quieres coger (NINGUNO  para cancelar):");
+            item = buscarItem(string);
+        } while (!string.equals("NINGUNO") &&item == null);
+        return item;
     }
 
     /**
@@ -275,7 +273,7 @@ public class Sala {
      *  items que hay en la sala
      */
     private void listarItems() {
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < numeroItems; i++) {
             System.out.println(items[i].toString());
         }
     }
@@ -286,10 +284,12 @@ public class Sala {
      * @param descripcion
      */
     public void eliminarItem(String descripcion) {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].getDescripcion().equals(descripcion)) {
-                items[i] = null;
-            }
+        int pos = 0;
+        while (!(items[pos].getDescripcion().equals(descripcion)) && items[pos] != null) {
+            pos++;
+        }
+        for (int i = pos; i < numeroItems; i++) {
+            items[i] = items[1 + i];
         }
     }
 }

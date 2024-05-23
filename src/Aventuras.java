@@ -26,12 +26,17 @@ public class Aventuras {
     public static void main(String[] args) {
         Random r = new Random();
         Scanner sc = new Scanner(System.in);
+        if(args.length!=10){
+            System.out.println("Error en el numero de argumentos. Deben ser 10.");
+            System.exit(1);
+        }
+        mostrarPuntuaciones(args[9]);
         Motor motor = new Motor(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]),
                 Integer.parseInt(args[3]), Integer.parseInt(args[4]));
         Personaje jugador =Personaje.crearPersonaje(sc) ;
-        motor.cargarMapa(args[5]);
         motor.iniciar(args[5], args[6], args[7], args[8]);
         motor.jugar(sc, jugador, r);
+        guardarPuntuacion(args[9], jugador);
         
 
     }
