@@ -386,22 +386,15 @@ public class Motor {
             String movimiento = teclado.nextLine();
             switch (movimiento) {
                 case "N":
-                    if (salaActual.getFila() == 0) {
-                        System.out.println("No puedes moverte al norte");
-                        nuevaSala = salaActual;
-                    } else if (!existeSala(salaActual.getFila(), salaActual.getColumna())) {
+                    if (salaActual.getFila() == 0 || !existeSala(salaActual.getFila() - 1, salaActual.getColumna())) {
                         System.out.println("No puedes moverte al norte");
                         nuevaSala = salaActual;
                     } else {
                         nuevaSala = mapa[salaActual.getFila() - 1][salaActual.getColumna()];
                     }
-
                     break;
                 case "S":
-                    if (salaActual.getFila() == mapa.length - 1) {
-                        System.out.println("No puedes moverte al sur");
-                        nuevaSala = salaActual;
-                    } else if (!existeSala(salaActual.getFila(), salaActual.getColumna())) {
+                    if (salaActual.getFila() == mapa.length - 1 || !existeSala(salaActual.getFila() + 1, salaActual.getColumna())) {
                         System.out.println("No puedes moverte al sur");
                         nuevaSala = salaActual;
                     } else {
@@ -409,10 +402,7 @@ public class Motor {
                     }
                     break;
                 case "E":
-                    if (salaActual.getColumna() == mapa[0].length - 1) {
-                        System.out.println("No puedes moverte al este");
-                        nuevaSala = salaActual;
-                    } else if (!existeSala(salaActual.getFila(), salaActual.getColumna())) {
+                    if (salaActual.getColumna() == mapa[0].length - 1 || !existeSala(salaActual.getFila(), salaActual.getColumna() + 1)) {
                         System.out.println("No puedes moverte al este");
                         nuevaSala = salaActual;
                     } else {
@@ -420,10 +410,7 @@ public class Motor {
                     }
                     break;
                 case "O":
-                    if (salaActual.getColumna() == 0) {
-                        System.out.println("No puedes moverte al oeste");
-                        nuevaSala = salaActual;
-                    } else if (!existeSala(salaActual.getFila(), salaActual.getColumna())) {
+                    if (salaActual.getColumna() == 0 || !existeSala(salaActual.getFila(), salaActual.getColumna() - 1)) {
                         System.out.println("No puedes moverte al oeste");
                         nuevaSala = salaActual;
                     } else {
@@ -431,8 +418,9 @@ public class Motor {
                     }
                     break;
                 default:
-                    System.out.println("Movimiento no válido. Comprueba que hayas introducido N, E, S o O");
+                    System.out.println("Movimiento no válido");
                     nuevaSala = salaActual;
+                    break;
             }
         } while (nuevaSala == salaActual);
         return nuevaSala;
