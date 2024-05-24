@@ -278,7 +278,7 @@ public class Motor {
 
     /**
      * Método jugar para empezar a jugar con el personaje
-     * TODO: método complejo en el que hay que seguir la siguiente ejecución:
+     *  método complejo en el que hay que seguir la siguiente ejecución:
      * 1. mostrar el mapa por pantalla HECHO
      * 2. Obtener la sala actual y mientras el personaje tenga vida y no haya
      * llegado a la casilla final HECHO
