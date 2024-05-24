@@ -331,6 +331,7 @@ public class Motor {
                         }
                     }
                 }
+            }
 
                 if (salaActual.hayTrampas()) {
                     for (int i = 0; i < salaActual.getTrampas().length; i++) {
@@ -362,7 +363,6 @@ public class Motor {
                 seleccionarMovimiento(teclado, salaActual);
             }
         }
-    }
 
     /**
      * Metodo seleccionarMovimiento para establecer las acciones que tome el jugador
