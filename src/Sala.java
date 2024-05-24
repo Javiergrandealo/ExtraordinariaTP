@@ -273,9 +273,12 @@ public class Sala {
      *  items que hay en la sala
      */
     private void listarItems() {
-        for (int i = 0; i < numeroItems; i++) {
-            System.out.println(items[i].toString());
+        if(hayItems()){
+            for (int i = 0; i < numeroItems; i++) {
+                System.out.println(items[i].toString());
+            }
         }
+        
     }
 
     /**
