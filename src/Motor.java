@@ -58,7 +58,8 @@ public class Motor {
                     if (filas < mapa.length && columnas < mapa[filas].length) {
                         mapa[filas][columnas] = sala;
                     } else {
-                        System.out.println("La sala en la fila " + filas + " y columna " + columnas + " no cabe en el mapa");
+                        System.out.println(
+                                "La sala en la fila " + filas + " y columna " + columnas + " no cabe en el mapa");
                     }
                 }
             }
@@ -98,7 +99,7 @@ public class Motor {
                 Double valor = Double.parseDouble(partes[3]);
                 int peso = Integer.parseInt(partes[4]);
                 Item item = new Item(descripcion, valor, peso);
-                
+
                 if (fila < mapa.length && columna < mapa[fila].length && mapa[fila][columna] != null) {
                     mapa[fila][columna].agregarItem(item);
                 } else {
@@ -129,38 +130,38 @@ public class Motor {
      */
     private void cargarMonstruos(String ficheroMonstruos) {
         BufferedReader entrada = null;
-    try {
-        entrada = new BufferedReader(new FileReader(ficheroMonstruos));
-        String linea;
-        while ((linea = entrada.readLine()) != null) {
-            String[] partes = linea.split(";");
-            int fila = Integer.parseInt(partes[0]);
-            int columna = Integer.parseInt(partes[1]);
-            String descripcion = partes[2];
-            int vida = Integer.parseInt(partes[3]);
-            int ataque = Integer.parseInt(partes[4]);
-            int defensa = Integer.parseInt(partes[5]);
-            Monstruo monstruo = new Monstruo(descripcion, vida, ataque, defensa);
-            
-            if (fila < mapa.length && columna < mapa[fila].length && mapa[fila][columna] != null) {
-                mapa[fila][columna].agregarMonstruo(monstruo);
-            } else {
-                System.out.println("La sala en la fila " + fila + " y columna " + columna + " no existe");
-            }
-        }
-    } catch (FileNotFoundException e) {
-        System.out.println("No se ha encontrado el fichero");
-    } catch (IOException e) {
-        System.out.println("Error de lectura");
-    } finally {
         try {
-            if (entrada != null) {
-                entrada.close();
+            entrada = new BufferedReader(new FileReader(ficheroMonstruos));
+            String linea;
+            while ((linea = entrada.readLine()) != null) {
+                String[] partes = linea.split(";");
+                int fila = Integer.parseInt(partes[0]);
+                int columna = Integer.parseInt(partes[1]);
+                String descripcion = partes[2];
+                int vida = Integer.parseInt(partes[3]);
+                int ataque = Integer.parseInt(partes[4]);
+                int defensa = Integer.parseInt(partes[5]);
+                Monstruo monstruo = new Monstruo(descripcion, vida, ataque, defensa);
+
+                if (fila < mapa.length && columna < mapa[fila].length && mapa[fila][columna] != null) {
+                    mapa[fila][columna].agregarMonstruo(monstruo);
+                } else {
+                    System.out.println("La sala en la fila " + fila + " y columna " + columna + " no existe");
+                }
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("No se ha encontrado el fichero");
         } catch (IOException e) {
-            System.out.println("Error al cerrar el fichero");
+            System.out.println("Error de lectura");
+        } finally {
+            try {
+                if (entrada != null) {
+                    entrada.close();
+                }
+            } catch (IOException e) {
+                System.out.println("Error al cerrar el fichero");
+            }
         }
-    }
     }
 
     /**
@@ -238,11 +239,11 @@ public class Motor {
      * @param columna
      * @return
      */
-    
-    private boolean existeSala(int fila, int columna) { //metodo auxuliar para saber si existe una sala en la posicion, ayuda a la comprensón del metodo mostrarMapa
+
+    private boolean existeSala(int fila, int columna) { // metodo auxuliar para saber si existe una sala en la posicion,
+                                                        // ayuda a la comprensón del metodo mostrarMapa
         return mapa[fila][columna] != null;
     }
-
 
     public String mostrarMapa(int fila, int columna) {
         int filasMapa = mapa.length;
@@ -257,9 +258,9 @@ public class Motor {
         for (int i = 0; i < filasMapa; i++) {
             a += "║";
             for (int j = 0; j < columnasMapa; j++) {
-                if(i == fila && j== columna){
-                    a += "@"; //posicion del personaje
-                }else if (existeSala(i, j)) {
+                if (i == fila && j == columna) {
+                    a += "@"; // posicion del personaje
+                } else if (existeSala(i, j)) {
                     a += "░";
                 } else {
                     a += " ";
@@ -305,35 +306,39 @@ public class Motor {
      */
     public void jugar(Scanner teclado, Personaje personaje, Random random) {
         boolean salir = false;
-        System.out.println(mostrarMapa(0,0));
+        System.out.println(mostrarMapa(0, 0));
         Sala salaActual = mapa[0][0];
-        while (personaje.getVida()>0 && salaActual.getFila() != mapa.length-1 && salaActual.getColumna() != mapa[0].length-1 && salir == false) {
+        while (personaje.getVida() > 0 && salaActual.getFila() != mapa.length - 1
+                && salaActual.getColumna() != mapa[0].length - 1 && salir == false) {
             System.out.println(salaActual.getDescripcion());
-            if(salaActual.hayMonstruos()){
+            if (salaActual.hayMonstruos()) {
 
                 Monstruo monstruo = salaActual.seleccionarMonstruo(teclado);
-                while (monstruo== null){
-                    monstruo= salaActual.seleccionarMonstruo(teclado);
+                while (monstruo == null) {
+                    monstruo = salaActual.seleccionarMonstruo(teclado);
                 }
-                while(personaje.getVida()>0 && monstruo.getVida()>0){
+                while (personaje.getVida() > 0 && monstruo.getVida() > 0) {
                     monstruo.recibirDanyo(personaje.getAtaque());
-                    if(monstruo.getVida()>0){
+                    if (monstruo.getVida() > 0) {
                         personaje.recibirDanyo(monstruo.getAtaque());
                     }
-                    if (personaje.getVida() <= 0) {
-                        System.out.println("El mounstro te ha eliminado, fin del juego");
-                        salir = true;
-                        return;
+                    if (monstruo.getVida() <= 0) {
+                        System.out.println("Has eliminado al monstruo");
+                        salaActual.eliminarMonstruo(monstruo.getNombre());
+                        if (personaje.getVida() <= 0) {
+                            System.out.println("El mounstro te ha eliminado, fin del juego");
+                            salir = true;
+                            return;
+                        }
                     }
                 }
-            }
-                
-                if(salaActual.hayTrampas()){
+
+                if (salaActual.hayTrampas()) {
                     for (int i = 0; i < salaActual.getTrampas().length; i++) {
-                        if(salaActual.getTrampas()[i] != null){
-                            if(random.nextInt(50) < personaje.getDestreza()){
+                        if (salaActual.getTrampas()[i] != null) {
+                            if (random.nextInt(50) < personaje.getDestreza()) {
                                 System.out.println("Has esquivado la trampa");
-                            }else{
+                            } else {
                                 personaje.recibirDanyo(salaActual.getTrampas()[i].getDanyo());
                                 if (personaje.getVida() <= 0) {
                                     System.out.println("Has caido en una trampa y no has sobrevivido, fin del juego");
@@ -344,22 +349,21 @@ public class Motor {
                         }
                     }
                 }
-                if(salaActual.hayItems()){
+                if (salaActual.hayItems()) {
                     Item item = salaActual.seleccionarItem(teclado);
-                    while(item != null){
-                        if(personaje.anyadirItem(item)){
+                    while (item != null) {
+                        if (personaje.anyadirItem(item)) {
                             System.out.println("Has añadido el item a tu mochila");
-                        }else{
+                        } else {
                             System.out.println("No puedes añadir el item a tu mochila");
                         }
                         item = salaActual.seleccionarItem(teclado);
                     }
                 }
                 seleccionarMovimiento(teclado, salaActual);
+            }
         }
     }
-
-    
 
     /**
      * Metodo seleccionarMovimiento para establecer las acciones que tome el jugador
@@ -386,23 +390,22 @@ public class Motor {
                     if (salaActual.getFila() == 0) {
                         System.out.println("No puedes moverte al norte");
                         nuevaSala = salaActual;
-                    } else if(!existeSala(salaActual.getFila(), salaActual.getColumna())){
+                    } else if (!existeSala(salaActual.getFila(), salaActual.getColumna())) {
                         System.out.println("No puedes moverte al norte");
                         nuevaSala = salaActual;
                     } else {
                         nuevaSala = mapa[salaActual.getFila() - 1][salaActual.getColumna()];
                     }
-                    
+
                     break;
                 case "S":
                     if (salaActual.getFila() == mapa.length - 1) {
                         System.out.println("No puedes moverte al sur");
                         nuevaSala = salaActual;
-                    }else if(!existeSala(salaActual.getFila(), salaActual.getColumna())){
+                    } else if (!existeSala(salaActual.getFila(), salaActual.getColumna())) {
                         System.out.println("No puedes moverte al sur");
                         nuevaSala = salaActual;
-                    }
-                    else {
+                    } else {
                         nuevaSala = mapa[salaActual.getFila() + 1][salaActual.getColumna()];
                     }
                     break;
@@ -410,11 +413,10 @@ public class Motor {
                     if (salaActual.getColumna() == mapa[0].length - 1) {
                         System.out.println("No puedes moverte al este");
                         nuevaSala = salaActual;
-                    } else if(!existeSala(salaActual.getFila(), salaActual.getColumna())){
+                    } else if (!existeSala(salaActual.getFila(), salaActual.getColumna())) {
                         System.out.println("No puedes moverte al este");
                         nuevaSala = salaActual;
-                    }
-                    else {
+                    } else {
                         nuevaSala = mapa[salaActual.getFila()][salaActual.getColumna() + 1];
                     }
                     break;
@@ -422,11 +424,10 @@ public class Motor {
                     if (salaActual.getColumna() == 0) {
                         System.out.println("No puedes moverte al oeste");
                         nuevaSala = salaActual;
-                    } else if(!existeSala(salaActual.getFila(), salaActual.getColumna())){
+                    } else if (!existeSala(salaActual.getFila(), salaActual.getColumna())) {
                         System.out.println("No puedes moverte al oeste");
                         nuevaSala = salaActual;
-                    }
-                    else {
+                    } else {
                         nuevaSala = mapa[salaActual.getFila()][salaActual.getColumna() - 1];
                     }
                     break;

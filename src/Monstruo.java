@@ -71,6 +71,10 @@ public class Monstruo {
         if (ataque > 0) {
             vida -= ataque;
         }
+        if (vida < 0) {
+            vida = 0;
+            
+        }
     }
 
     /**

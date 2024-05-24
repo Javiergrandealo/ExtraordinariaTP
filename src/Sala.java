@@ -258,13 +258,17 @@ public class Sala {
     public Item seleccionarItem(Scanner teclado) {
         Item item;
         String string;
-        System.out.println("Items que se encuentran en la sala"+ descripcion+":");
+        if(hayItems()){
+            System.out.println("Items que se encuentran en la sala "+ descripcion+":");
         listarItems();
         do {
             string = Utilidades.leerCadena(teclado, "Escribe la descripción del item que quieres coger (NINGUNO  para cancelar):");
             item = buscarItem(string);
-        } while (!string.equals("NINGUNO") &&item == null);
+        } while (!string.equals("NINGUNO") &&item == null || !hayItems());
         return item;
+        }else{
+            return null;
+        }
     }
 
     /**
