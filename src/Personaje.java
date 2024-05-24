@@ -67,6 +67,7 @@ public class Personaje {
             suma += destreza;
             if (suma > 250) {
                 System.out.println("Has superado el límite de puntos. Vuelve a introducir los valores.");
+                suma = 0;
             }
         }
         personaje = new Personaje(nombre, vida, ataque, defensa, destreza, destreza / 4, ataque / 2);
