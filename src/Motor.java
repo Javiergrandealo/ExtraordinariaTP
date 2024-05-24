@@ -52,12 +52,14 @@ public class Motor {
                 if (partes.length == 3) {
                     int filas = Integer.parseInt(partes[0]);
                     int columnas = Integer.parseInt(partes[1]);
-                    if (filas > 0) filas--;
-                    if (columnas > 0) columnas--;
                     String descripcion = partes[2];
                     Sala sala = new Sala(descripcion, maxItemsPorSala, maxMonstruosPorSala, maxTrampasPorSala, filas,
                             columnas);
-                    mapa[filas][columnas] = sala;
+                    if (filas < mapa.length && columnas < mapa[filas].length) {
+                        mapa[filas][columnas] = sala;
+                    } else {
+                        System.out.println("La sala en la fila " + filas + " y columna " + columnas + " no cabe en el mapa");
+                    }
                 }
             }
         } catch (FileNotFoundException e) {
@@ -91,14 +93,17 @@ public class Motor {
             while ((linea = entrada.readLine()) != null) {
                 String[] partes = linea.split(";");
                 int fila = Integer.parseInt(partes[0]);
-                if (fila > 0) fila--;
                 int columna = Integer.parseInt(partes[1]);
-                if (columna > 0) columna--;
                 String descripcion = partes[2];
                 Double valor = Double.parseDouble(partes[3]);
                 int peso = Integer.parseInt(partes[4]);
                 Item item = new Item(descripcion, valor, peso);
-                mapa[fila][columna].agregarItem(item);
+                
+                if (fila < mapa.length && columna < mapa[fila].length && mapa[fila][columna] != null) {
+                    mapa[fila][columna].agregarItem(item);
+                } else {
+                    System.out.println("La sala en la fila " + fila + " y columna " + columna + " no existe");
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("No se ha encontrado el fichero");
@@ -124,36 +129,38 @@ public class Motor {
      */
     private void cargarMonstruos(String ficheroMonstruos) {
         BufferedReader entrada = null;
-        try {
-            entrada = new BufferedReader(new FileReader(ficheroMonstruos));
-            String linea;
-            while ((linea = entrada.readLine()) != null) {
-                String[] partes = linea.split(";");
-                int fila = Integer.parseInt(partes[0]);
-                if (fila > 0) fila--;
-                int columna = Integer.parseInt(partes[1]);
-                if (columna > 0) columna--;
-                String descripcion = partes[2];
-                int vida = Integer.parseInt(partes[3]);
-                int ataque = Integer.parseInt(partes[4]);
-                int defensa = Integer.parseInt(partes[5]);
-                Monstruo monstruo = new Monstruo(descripcion, vida, ataque, defensa);
-                
+    try {
+        entrada = new BufferedReader(new FileReader(ficheroMonstruos));
+        String linea;
+        while ((linea = entrada.readLine()) != null) {
+            String[] partes = linea.split(";");
+            int fila = Integer.parseInt(partes[0]);
+            int columna = Integer.parseInt(partes[1]);
+            String descripcion = partes[2];
+            int vida = Integer.parseInt(partes[3]);
+            int ataque = Integer.parseInt(partes[4]);
+            int defensa = Integer.parseInt(partes[5]);
+            Monstruo monstruo = new Monstruo(descripcion, vida, ataque, defensa);
+            
+            if (fila < mapa.length && columna < mapa[fila].length && mapa[fila][columna] != null) {
                 mapa[fila][columna].agregarMonstruo(monstruo);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("No se ha encontrado el fichero");
-        } catch (IOException e) {
-            System.out.println("Error de lectura");
-        } finally {
-            try {
-                if (entrada != null) {
-                    entrada.close();
-                }
-            } catch (IOException e) {
-                System.out.println("Error al cerrar el fichero");
+            } else {
+                System.out.println("La sala en la fila " + fila + " y columna " + columna + " no existe");
             }
         }
+    } catch (FileNotFoundException e) {
+        System.out.println("No se ha encontrado el fichero");
+    } catch (IOException e) {
+        System.out.println("Error de lectura");
+    } finally {
+        try {
+            if (entrada != null) {
+                entrada.close();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al cerrar el fichero");
+        }
+    }
     }
 
     /**
@@ -171,9 +178,7 @@ public class Motor {
             while ((linea = entrada.readLine()) != null) {
                 String[] partes = linea.split(";");
                 int fila = Integer.parseInt(partes[0]);
-                if (fila > 0) fila--;
                 int columna = Integer.parseInt(partes[1]);
-                if (columna > 0) columna--;
                 String descripcion = partes[2];
                 int dano = Integer.parseInt(partes[3]);
                 Trampa trampa = new Trampa(descripcion, dano);
@@ -302,11 +307,14 @@ public class Motor {
         boolean salir = false;
         System.out.println(mostrarMapa(0,0));
         Sala salaActual = mapa[0][0];
-        while (personaje.getVida()>0 && salaActual.getFila() != mapa.length-1 && salaActual.getColumna() != mapa[0].length-1 && !salir) {
+        while (personaje.getVida()>0 && salaActual.getFila() != mapa.length-1 && salaActual.getColumna() != mapa[0].length-1 && salir == false) {
             System.out.println(salaActual.getDescripcion());
             if(salaActual.hayMonstruos()){
 
                 Monstruo monstruo = salaActual.seleccionarMonstruo(teclado);
+                while (monstruo== null){
+                    monstruo= salaActual.seleccionarMonstruo(teclado);
+                }
                 while(personaje.getVida()>0 && monstruo.getVida()>0){
                     monstruo.recibirDanyo(personaje.getAtaque());
                     if(monstruo.getVida()>0){
@@ -315,6 +323,7 @@ public class Motor {
                     if (personaje.getVida() <= 0) {
                         System.out.println("El mounstro te ha eliminado, fin del juego");
                         salir = true;
+                        return;
                     }
                 }
             }
@@ -329,6 +338,7 @@ public class Motor {
                                 if (personaje.getVida() <= 0) {
                                     System.out.println("Has caido en una trampa y no has sobrevivido, fin del juego");
                                     salir = true;
+                                    return;
                                 }
                             }
                         }

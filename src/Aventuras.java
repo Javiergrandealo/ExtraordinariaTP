@@ -17,7 +17,7 @@ public class Aventuras {
 
     /**
      * Main desde donde ejecutar el programa
-     * TODO instanciación e inicialización de objetos para la ejecución,
+     * instanciación e inicialización de objetos para la ejecución,
      * ejecución del motor, muestra de puntuaciones y lectura de instrucciones
      * por teclado para jugar. Finalmente guardar la puntuación
      * 
@@ -31,7 +31,7 @@ public class Aventuras {
             System.exit(1);
         }
         mostrarPuntuaciones(args[9]);
-        Motor motor = new Motor(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]),
+        Motor motor = new Motor(Integer.parseInt(args[0])+1, Integer.parseInt(args[1])+1, Integer.parseInt(args[2]),
                 Integer.parseInt(args[3]), Integer.parseInt(args[4]));
         Personaje jugador =Personaje.crearPersonaje(sc) ;
         motor.iniciar(args[5], args[6], args[7], args[8]);
