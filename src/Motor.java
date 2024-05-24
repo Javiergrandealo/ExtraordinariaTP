@@ -312,7 +312,6 @@ public class Motor {
                 && salaActual.getColumna() != mapa[0].length - 1 && salir == false) {
             System.out.println(salaActual.getDescripcion());
             if (salaActual.hayMonstruos()) {
-
                 Monstruo monstruo = salaActual.seleccionarMonstruo(teclado);
                 while (monstruo == null) {
                     monstruo = salaActual.seleccionarMonstruo(teclado);
