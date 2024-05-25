@@ -99,7 +99,6 @@ public class Motor {
                 Double valor = Double.parseDouble(partes[3]);
                 int peso = Integer.parseInt(partes[4]);
                 Item item = new Item(descripcion, valor, peso);
-
                 if (fila < mapa.length && columna < mapa[fila].length && mapa[fila][columna] != null) {
                     mapa[fila][columna].agregarItem(item);
                 } else {
@@ -142,7 +141,6 @@ public class Motor {
                 int ataque = Integer.parseInt(partes[4]);
                 int defensa = Integer.parseInt(partes[5]);
                 Monstruo monstruo = new Monstruo(descripcion, vida, ataque, defensa);
-
                 if (fila < mapa.length && columna < mapa[fila].length && mapa[fila][columna] != null) {
                     mapa[fila][columna].agregarMonstruo(monstruo);
                 } else {
@@ -312,8 +310,8 @@ public class Motor {
         boolean salir = false;
         System.out.println(mostrarMapa(0, 0));
         Sala salaActual = mapa[0][0];
-        while (personaje.getVida() > 0 && salaActual.getFila() != mapa.length - 1
-                && salaActual.getColumna() != mapa[0].length - 1 && salir == false) {
+        while (personaje.getVida() > 0 && salaActual.getFila() != mapa.length 
+                && salaActual.getColumna() != mapa[0].length  && salir == false) {
             System.out.println(salaActual.getDescripcion());
             while (salaActual.hayMonstruos()) {
                 Monstruo monstruo = salaActual.seleccionarMonstruo(teclado);
