@@ -34,6 +34,7 @@ public class Aventuras {
         Personaje jugador =Personaje.crearPersonaje(sc) ;
         motor.iniciar(args[5], args[6], args[7], args[8]);
         motor.jugar(sc, jugador, r);
+        System.out.println("Se va a guardar la partida en el fichero de puntuaciones");
         guardarPuntuacion(args[9], jugador);
         
 
@@ -56,7 +57,14 @@ public class Aventuras {
         } catch (IOException e) {
             System.out.println("Error al guardar la puntuación");
             e.printStackTrace();
-
+        } finally {
+            if (bw != null) {
+                try {
+                    bw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
