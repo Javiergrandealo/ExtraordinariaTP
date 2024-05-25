@@ -328,11 +328,11 @@ public class Motor {
                     if (monstruo.getVida() <= 0) {
                         System.out.println("Has eliminado al monstruo");
                         salaActual.eliminarMonstruo(monstruo.getNombre());
-                        // Verifica si el monstruo se eliminó correctamente
-                        if (!salaActual.existeMonstruo(monstruo.getNombre())) {
-                            System.out.println("El monstruo ha sido eliminado correctamente de la sala");
-                        } else {
-                            System.out.println("Error: El monstruo no se eliminó correctamente de la sala");
+                        System.out.println("Tienes " + personaje.getVida() + " puntos de vida actualmente");
+                        if (personaje.getVida() <= 0) {
+                            System.out.println("El mounstro te ha eliminado, fin del juego");
+                            salir = true;
+                            return;
                         }
                     }
                 }
@@ -360,6 +360,7 @@ public class Motor {
                 while (item != null) {
                     boolean itemAñadido = personaje.anyadirItem(item);
                     if (itemAñadido) {
+                        salaActual.eliminarItem(item.getDescripcion());
                         System.out.println("Has añadido el item a tu mochila");
                     } else {
                         System.out.println("No puedes añadir el item a tu mochila");

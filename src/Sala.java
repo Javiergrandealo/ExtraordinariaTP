@@ -327,6 +327,7 @@ public boolean existeMonstruo(String nombreMonstruo) {
         }
         for (int i = pos; i < numeroItems; i++) {
             items[i] = items[1 + i];
+            numeroItems--;
         }
     }
 }
