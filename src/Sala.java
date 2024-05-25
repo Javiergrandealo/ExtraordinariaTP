@@ -150,7 +150,7 @@ public class Sala {
      * @return
      */
     public Monstruo buscarMonstruo(String nombreMonstruo) {
-        for (int i = 0; i < numeroMonstruos; i++) {
+        for (int i = 0; i < monstruos.length; i++) {
             if (monstruos[i].getNombre().toLowerCase().contains(nombreMonstruo.toLowerCase())) {
                 return monstruos[i];
             }
@@ -200,14 +200,13 @@ public class Sala {
  * @return true si el monstruo existe, false en caso contrario
  */
 public boolean existeMonstruo(String nombreMonstruo) {
-    for (Monstruo monstruo : monstruos) {
-        if (monstruo != null && monstruo.getNombre().equals(nombreMonstruo)) {
+    for (int i = 0; i < monstruos.length; i++) {
+        if (monstruos[i] != null && monstruos[i].getNombre().equals(nombreMonstruo)) {
             return true;
         }
     }
     return false;
 }
-
     /**
      * Método hayTrampas para saber si la sala dispone de alguna trampa
      * mostrar si existe alguna trampa en la sala, false en caso contrario
