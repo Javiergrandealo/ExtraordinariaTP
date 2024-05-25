@@ -170,15 +170,17 @@ public class Personaje {
      */
     public boolean anyadirItem(Item item) {
         boolean valido = false;
-        if (items.length < destreza / 4 && getPesoMochila() + item.getPeso() < maxPesoPorPersonaje) {
-            for (int i = 0; i < items.length; i++) {
-                if (items[i] == null) {
-                    items[i] = item;
-                    valido = true;
-                }
-            }
+    if (items.length < destreza / 4 && getPesoMochila() + item.getPeso() < maxPesoPorPersonaje) {
+        int i = 0;
+        while (i < items.length && items[i] != null) {
+            i++;
         }
-        return valido;
+        if (i < items.length) {
+            items[i] = item;
+            valido = true;
+        }
+    }
+    return valido;
     }
 
     /**

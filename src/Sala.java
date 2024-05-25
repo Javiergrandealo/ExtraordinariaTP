@@ -213,14 +213,12 @@ public class Sala {
      * @return
      */
     public Item buscarItem(String descripcion) {
-        Item item = null;
         for (int i = 0; i < numeroItems; i++) {
-            if (items[i].getDescripcion().equals(descripcion)) {
-                item = items[i];
+            if (items[i].getDescripcion().toLowerCase().contains(descripcion.toLowerCase())) {
+                return items[i];
             }
         }
-
-        return item;
+        return null;
     }
 
     /**
@@ -256,19 +254,20 @@ public class Sala {
      * @return
      */
     public Item seleccionarItem(Scanner teclado) {
-        Item item;
-        String string;
-        if(hayItems()){
-            System.out.println("Items que se encuentran en la sala "+ descripcion+":");
+        Item item = null;
+    String string;
+    if(hayItems()){
+        System.out.println("Items que se encuentran en la sala "+ descripcion+":");
         listarItems();
         do {
             string = Utilidades.leerCadena(teclado, "Escribe la descripción del item que quieres coger (NINGUNO  para cancelar):");
             item = buscarItem(string);
-        } while (!string.equals("NINGUNO") &&item == null || !hayItems());
-        return item;
-        }else{
-            return null;
-        }
+            if (item == null && !string.equals("NINGUNO")) {
+                System.out.println("No se encontró el item. Por favor, intenta de nuevo.");
+            }
+        } while (!string.equals("NINGUNO") && item == null);
+    }
+    return item;
     }
 
     /**
