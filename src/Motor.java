@@ -242,6 +242,10 @@ public class Motor {
 
     private boolean existeSala(int fila, int columna) { // metodo auxuliar para saber si existe una sala en la posicion,
                                                         // ayuda a la comprensón del metodo mostrarMapa
+        if (fila < 0 || columna < 0 || fila >= mapa.length || columna >= mapa[0].length) {
+            System.out.println("Fuera del mapa");
+            return false;
+        }
         return mapa[fila][columna] != null;
     }
 
@@ -278,7 +282,7 @@ public class Motor {
 
     /**
      * Método jugar para empezar a jugar con el personaje
-     *  método complejo en el que hay que seguir la siguiente ejecución:
+     * método complejo en el que hay que seguir la siguiente ejecución:
      * 1. mostrar el mapa por pantalla HECHO
      * 2. Obtener la sala actual y mientras el personaje tenga vida y no haya
      * llegado a la casilla final HECHO
@@ -334,39 +338,39 @@ public class Motor {
                 }
             }
 
-                if (salaActual.hayTrampas()) {
-                    for (int i = 0; i < salaActual.getTrampas().length; i++) {
-                        if (salaActual.getTrampas()[i] != null) {
-                            if (random.nextInt(50) < personaje.getDestreza()) {
-                                System.out.println("Has esquivado la trampa");
-                            } else {
-                                personaje.recibirDanyo(salaActual.getTrampas()[i].getDanyo());
-                                if (personaje.getVida() <= 0) {
-                                    System.out.println("Has caido en una trampa y no has sobrevivido, fin del juego");
-                                    salir = true;
-                                    return;
-                                }
+            if (salaActual.hayTrampas()) {
+                for (int i = 0; i < salaActual.getTrampas().length; i++) {
+                    if (salaActual.getTrampas()[i] != null) {
+                        if (random.nextInt(50) < personaje.getDestreza()) {
+                            System.out.println("Has esquivado la trampa");
+                        } else {
+                            personaje.recibirDanyo(salaActual.getTrampas()[i].getDanyo());
+                            if (personaje.getVida() <= 0) {
+                                System.out.println("Has caido en una trampa y no has sobrevivido, fin del juego");
+                                salir = true;
+                                return;
                             }
                         }
                     }
                 }
-                if (salaActual.hayItems()) {
-                    Item item;
-                    item = salaActual.seleccionarItem(teclado);
-                    while (item != null) {
-                        boolean itemAñadido = personaje.anyadirItem(item);
-                        if (itemAñadido) {
-                            System.out.println("Has añadido el item a tu mochila");
-                        } else {
-                            System.out.println("No puedes añadir el item a tu mochila");
-                        }
-                        item = salaActual.seleccionarItem(teclado);
-                    }
-                }
-                
-                seleccionarMovimiento(teclado, salaActual);
             }
+            if (salaActual.hayItems()) {
+                Item item;
+                item = salaActual.seleccionarItem(teclado);
+                while (item != null) {
+                    boolean itemAñadido = personaje.anyadirItem(item);
+                    if (itemAñadido) {
+                        System.out.println("Has añadido el item a tu mochila");
+                    } else {
+                        System.out.println("No puedes añadir el item a tu mochila");
+                    }
+                    item = salaActual.seleccionarItem(teclado);
+                }
+            }
+
+            seleccionarMovimiento(teclado, salaActual);
         }
+    }
 
     /**
      * Metodo seleccionarMovimiento para establecer las acciones que tome el jugador
@@ -390,7 +394,7 @@ public class Motor {
             String movimiento = teclado.nextLine();
             switch (movimiento) {
                 case "N":
-                    if (salaActual.getFila() == 0 || !existeSala(salaActual.getFila() - 1, salaActual.getColumna())) {
+                    if (!existeSala(salaActual.getFila() - 1, salaActual.getColumna())) {
                         System.out.println("No puedes moverte al norte");
                         nuevaSala = salaActual;
                     } else {
@@ -398,7 +402,7 @@ public class Motor {
                     }
                     break;
                 case "S":
-                    if (salaActual.getFila() == mapa.length - 1 || !existeSala(salaActual.getFila() + 1, salaActual.getColumna())) {
+                    if (!existeSala(salaActual.getFila() + 1, salaActual.getColumna())) {
                         System.out.println("No puedes moverte al sur");
                         nuevaSala = salaActual;
                     } else {
@@ -406,7 +410,7 @@ public class Motor {
                     }
                     break;
                 case "E":
-                    if (salaActual.getColumna() == mapa[0].length - 1 || !existeSala(salaActual.getFila(), salaActual.getColumna() + 1)) {
+                    if (!existeSala(salaActual.getFila(), salaActual.getColumna() + 1)) {
                         System.out.println("No puedes moverte al este");
                         nuevaSala = salaActual;
                     } else {
@@ -414,7 +418,7 @@ public class Motor {
                     }
                     break;
                 case "O":
-                    if (salaActual.getColumna() == 0 || !existeSala(salaActual.getFila(), salaActual.getColumna() - 1)) {
+                    if (!existeSala(salaActual.getFila(), salaActual.getColumna() - 1)) {
                         System.out.println("No puedes moverte al oeste");
                         nuevaSala = salaActual;
                     } else {
