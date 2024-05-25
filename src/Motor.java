@@ -319,7 +319,7 @@ public class Motor {
                     monstruo = salaActual.seleccionarMonstruo(teclado);
                 }
                 while (personaje.getVida() > 0 && monstruo.getVida() > 0) {
-                    System.out.println(personaje.toString()+ "ataca a "+ monstruo.toString() +" con"+ personaje.getAtaque() + " puntos de daño");
+                    System.out.println(personaje.toString()+ " ataca a "+ monstruo.toString() +" con "+ personaje.getAtaque() + " puntos de daño");
                     monstruo.recibirDanyo(personaje.getAtaque());
                     if (monstruo.getVida() > 0) {
                         personaje.recibirDanyo(monstruo.getAtaque());
@@ -365,7 +365,7 @@ public class Motor {
                         System.out.println("¡Te guardas el objeto! "+ item.toString());
                         System.out.println("Mochila de "+ personaje.getNombre() + ": "+ personaje.infoMochila());
                     }else{
-                        System.out.println("No puedes añadir el item"+ item.toString() +"a tu mochila");
+                        System.out.println("No puedes añadir el item "+ item.toString() +" a tu mochila");
                     }
                     item = salaActual.seleccionarItem(teclado);
                 }
