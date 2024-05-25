@@ -14,7 +14,9 @@ public class Utilidades {
      */
     public static String leerCadena(Scanner teclado, String s) {
         System.out.println(s);
-        String cadena = teclado.nextLine();
+        String cadena;
+        teclado.nextLine(); //para limpiar el buffer parece ser que es necesario
+        cadena =teclado.nextLine();
         return cadena;
     }
 

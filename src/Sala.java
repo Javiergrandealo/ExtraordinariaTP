@@ -122,9 +122,19 @@ public class Sala {
      * @return
      */
     public Monstruo seleccionarMonstruo(Scanner teclado) {
-        listarMonstruos();
-        String monstruo =Utilidades.leerCadena(teclado, "Selecciona un monstruo: ");
-        return buscarMonstruo(monstruo);
+        Monstruo monstruo = null;
+        String string;
+        if(hayMonstruos()){
+            listarMonstruos();
+            do{
+                string =Utilidades.leerCadena(teclado, "Selecciona un monstruo: ");
+                monstruo = buscarMonstruo(string);
+                if(monstruo == null){
+                    System.out.println("No se encontró el monstruo. Por favor, intenta de nuevo.");
+                }
+            }while(monstruo == null);
+        }
+        return monstruo;
     }
 
     /**
@@ -134,13 +144,12 @@ public class Sala {
      * @return
      */
     public Monstruo buscarMonstruo(String nombreMonstruo) {
-        Monstruo monstruo = null;
         for (int i = 0; i < numeroMonstruos; i++) {
-            if (monstruos[i].getNombre().equals(nombreMonstruo)) {
-                monstruo = monstruos[i];
+            if (monstruos[i].getNombre().toLowerCase().contains(nombreMonstruo.toLowerCase())) {
+                return monstruos[i];
             }
         }
-        return monstruo;
+        return null;
     }
 
     /**
