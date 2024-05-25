@@ -153,6 +153,7 @@ public class Personaje {
         danyo = danyo - defensa;
         if (danyo > 0) {
             vida -= danyo;
+            System.out.println("¡" + nombre + " ha recibido " + danyo + " puntos de daño!");
         }
 
     }
