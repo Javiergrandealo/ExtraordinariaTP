@@ -150,9 +150,11 @@ public class Sala {
      * @return
      */
     public Monstruo buscarMonstruo(String nombreMonstruo) {
-        for (int i = 0; i < monstruos.length; i++) {
-            if (monstruos[i].getNombre().toLowerCase().contains(nombreMonstruo.toLowerCase())) {
-                return monstruos[i];
+        if (monstruos != null) {
+            for (int i = 0; i < monstruos.length; i++) {
+                if (monstruos[i] != null && monstruos[i].getNombre().toLowerCase().contains(nombreMonstruo.toLowerCase())) {
+                    return monstruos[i];
+                }
             }
         }
         return null;
