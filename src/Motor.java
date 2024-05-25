@@ -310,8 +310,8 @@ public class Motor {
         boolean salir = false;
         System.out.println(mostrarMapa(0, 0));
         Sala salaActual = mapa[0][0];
-        while (personaje.getVida() > 0 && salaActual.getFila() != mapa.length 
-                && salaActual.getColumna() != mapa[0].length  && salir == false) {
+        while (personaje.getVida() > 0 && salaActual.getFila() <= mapa.length - 1
+        && salaActual.getColumna() <= mapa[0].length - 1 && salir == false) {
             System.out.println(salaActual.getDescripcion());
             while (salaActual.hayMonstruos()) {
                 Monstruo monstruo = salaActual.seleccionarMonstruo(teclado);
@@ -365,6 +365,11 @@ public class Motor {
                     }
                     item = salaActual.seleccionarItem(teclado);
                 }
+            }
+            if(salaActual.getFila() == mapa.length - 1 && salaActual.getColumna() == mapa[0].length - 1){
+                System.out.println("Has llegado a la sala final y has salido victorioso fin del juego");
+                salir = true;
+                return;
             }
 
             salaActual = seleccionarMovimiento(teclado, salaActual);
