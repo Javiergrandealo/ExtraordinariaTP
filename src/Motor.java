@@ -368,7 +368,8 @@ public class Motor {
                 }
             }
 
-            seleccionarMovimiento(teclado, salaActual);
+            salaActual = seleccionarMovimiento(teclado, salaActual);
+            System.out.println(mostrarMapa(salaActual.getFila(), salaActual.getColumna()));
         }
     }
 
