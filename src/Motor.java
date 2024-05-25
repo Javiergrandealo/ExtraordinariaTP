@@ -319,12 +319,13 @@ public class Motor {
                     monstruo = salaActual.seleccionarMonstruo(teclado);
                 }
                 while (personaje.getVida() > 0 && monstruo.getVida() > 0) {
+                    System.out.println(personaje.toString()+ "ataca a "+ monstruo.toString() +" con"+ personaje.getAtaque() + " puntos de daño");
                     monstruo.recibirDanyo(personaje.getAtaque());
                     if (monstruo.getVida() > 0) {
                         personaje.recibirDanyo(monstruo.getAtaque());
                     }
                     if (monstruo.getVida() <= 0) {
-                        System.out.println("Has eliminado al monstruo");
+                        System.out.println("¡Has derrotado al monstruo!");
                         salaActual.eliminarMonstruo(monstruo.getNombre());
                         System.out.println("Tienes " + personaje.getVida() + " puntos de vida actualmente");
                         if (personaje.getVida() <= 0) {
@@ -340,8 +341,10 @@ public class Motor {
                 for (int i = 0; i < salaActual.getTrampas().length; i++) {
                     if (salaActual.getTrampas()[i] != null) {
                         if (random.nextInt(50) < personaje.getDestreza()) {
-                            System.out.println("Has esquivado la trampa");
+                            System.out.println("¡Has esquivado la trampa! "+ salaActual.getTrampas()[i].getDescripcion());
                         } else {
+                            System.out.println("¡Has caído en una trampa! "+ salaActual.getTrampas()[i].getDescripcion());
+                            System.out.println("Te ha hecho " + salaActual.getTrampas()[i].getDanyo() + " puntos de daño");
                             personaje.recibirDanyo(salaActual.getTrampas()[i].getDanyo());
                             if (personaje.getVida() <= 0) {
                                 System.out.println("Has caido en una trampa y no has sobrevivido, fin del juego");
@@ -359,9 +362,10 @@ public class Motor {
                     boolean itemAñadido = personaje.anyadirItem(item);
                     if (itemAñadido) {
                         salaActual.eliminarItem(item.getDescripcion());
-                        System.out.println("Has añadido el item a tu mochila");
-                    } else {
-                        System.out.println("No puedes añadir el item a tu mochila");
+                        System.out.println("¡Te guardas el objeto! "+ item.toString());
+                        System.out.println("Mochila de "+ personaje.getNombre() + ": "+ personaje.infoMochila());
+                    }else{
+                        System.out.println("No puedes añadir el item"+ item.toString() +"a tu mochila");
                     }
                     item = salaActual.seleccionarItem(teclado);
                 }

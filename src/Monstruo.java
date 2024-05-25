@@ -86,7 +86,7 @@ public class Monstruo {
      */
     @Override
     public String toString() {
-        return nombre + " (V: " + vida + ", A: " + ataque + ", D: " + defensa + ")";
+        return "[ "+nombre + " (V: " + vida + ", A: " + ataque + ", D: " + defensa + ") ]";
     }
 
     /**

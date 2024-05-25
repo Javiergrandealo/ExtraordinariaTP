@@ -133,7 +133,7 @@ public class Sala {
         if(hayMonstruos()){
             listarMonstruos();
             do{
-                string =Utilidades.leerCadena(teclado, "Selecciona un monstruo: ");
+                string =Utilidades.leerCadena(teclado, "Escribe el nombre del monstruo que quieres atacar: ");
                 monstruo = buscarMonstruo(string);
                 if(monstruo == null){
                     System.out.println("No se encontró el monstruo. Por favor, intenta de nuevo.");
