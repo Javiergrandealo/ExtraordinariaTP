@@ -171,14 +171,36 @@ public class Sala {
      * @param nombreMonstruo
      */
     public void eliminarMonstruo(String nombreMonstruo) {
-        int pos = 0;
-        while (!(monstruos[pos].getNombre().equals(nombreMonstruo)) && monstruos[pos] != null) {
-            pos++;
-        }
-        for (int i = pos; i < numeroMonstruos; i++) {
-            monstruos[i] = monstruos[1 + i];
+        int pos = -1;
+    boolean encontrado = false;
+    for (int i = 0; i < monstruos.length && !encontrado; i++) {
+        if (monstruos[i] != null && monstruos[i].getNombre().equals(nombreMonstruo)) {
+            pos = i;
+            encontrado = true;
         }
     }
+    if (encontrado) {
+        for (int i = pos; i < monstruos.length - 1; i++) {
+            monstruos[i] = monstruos[i + 1];
+            numeroMonstruos--;
+        }
+        monstruos[monstruos.length - 1] = null;
+    }
+    }
+
+    /**
+ * Método existeMonstruo para verificar si un monstruo existe en la sala
+ * @param nombreMonstruo el nombre del monstruo a verificar
+ * @return true si el monstruo existe, false en caso contrario
+ */
+public boolean existeMonstruo(String nombreMonstruo) {
+    for (Monstruo monstruo : monstruos) {
+        if (monstruo != null && monstruo.getNombre().equals(nombreMonstruo)) {
+            return true;
+        }
+    }
+    return false;
+}
 
     /**
      * Método hayTrampas para saber si la sala dispone de alguna trampa

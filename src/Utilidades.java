@@ -15,7 +15,6 @@ public class Utilidades {
     public static String leerCadena(Scanner teclado, String s) {
         System.out.println(s);
         String cadena;
-        teclado.nextLine(); //para limpiar el buffer parece ser que es necesario
         cadena =teclado.nextLine();
         return cadena;
     }
@@ -34,9 +33,11 @@ public class Utilidades {
     public static int leerNumero(Scanner teclado, String mensaje, int minimo, int maximo) {
         System.out.println(mensaje);
         int numero = teclado.nextInt();
+        teclado.nextLine(); //parece ser que hay que limpiar el buffer
         while (numero < minimo || numero > maximo) {
             System.out.println("Número incorrecto. " + mensaje);
             numero = teclado.nextInt();
+            teclado.nextLine();
         }
         return numero;
     }

@@ -315,7 +315,7 @@ public class Motor {
         while (personaje.getVida() > 0 && salaActual.getFila() != mapa.length - 1
                 && salaActual.getColumna() != mapa[0].length - 1 && salir == false) {
             System.out.println(salaActual.getDescripcion());
-            if (salaActual.hayMonstruos()) {
+            while (salaActual.hayMonstruos()) {
                 Monstruo monstruo = salaActual.seleccionarMonstruo(teclado);
                 while (monstruo == null) {
                     monstruo = salaActual.seleccionarMonstruo(teclado);
@@ -328,11 +328,11 @@ public class Motor {
                     if (monstruo.getVida() <= 0) {
                         System.out.println("Has eliminado al monstruo");
                         salaActual.eliminarMonstruo(monstruo.getNombre());
-                        System.out.println("Tienes " + personaje.getVida() + " puntos de vida actualmente");
-                        if (personaje.getVida() <= 0) {
-                            System.out.println("El mounstro te ha eliminado, fin del juego");
-                            salir = true;
-                            return;
+                        // Verifica si el monstruo se eliminó correctamente
+                        if (!salaActual.existeMonstruo(monstruo.getNombre())) {
+                            System.out.println("El monstruo ha sido eliminado correctamente de la sala");
+                        } else {
+                            System.out.println("Error: El monstruo no se eliminó correctamente de la sala");
                         }
                     }
                 }
