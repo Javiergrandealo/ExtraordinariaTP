@@ -111,8 +111,14 @@ public class Sala {
      * @return
      */
     public boolean hayMonstruos() {
-        return numeroMonstruos > 0;
+        for (int i = 0; i < monstruos.length; i++) {
+            if (monstruos[i] != null) {
+                return true;
+            }
+        }
+        return false;
     }
+
 
     /**
      * Método seleccionarMonstruo para introducir desde pantalla el nombre de un monstruo
@@ -208,7 +214,12 @@ public boolean existeMonstruo(String nombreMonstruo) {
      * @return
      */
     public boolean hayTrampas() {
-        return numeroTrampas > 0;
+        for (int i = 0; i < trampas.length; i++) {
+            if(trampas[i] != null){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -233,7 +244,12 @@ public boolean existeMonstruo(String nombreMonstruo) {
      * @return
      */
     public boolean hayItems() {
-        return numeroItems > 0;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
