@@ -15,7 +15,7 @@
             "name": "Launch with Arguments",
             "request": "launch",
             "mainClass": "Aventuras",
-            "args": ["4","3","5","3","2","C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\salas.txt","C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\items.txt","C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\monstruos.txt", "C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\trampas.txt", "C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\puntuaciones.txt"]
+            "args": ["4","3","5","3","2","txt\\salas.txt","txt\\items.txt","txt\\monstruos.txt", "txt\\trampas.txt", "txt\\puntuaciones.txt"]
         },
         {
             "type": "java",
@@ -29,7 +29,7 @@
             "name": "Launch Java Program",
             "request": "launch",
             "mainClass": "",
-            "args": "4 3 5 3 2 C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\salas.txt C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\items.txt C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\monstruos.txt C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\trampas.txt C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\puntuaciones.txt"
+            "args": "4 3 5 3 2 txt\\salas.txt txt\\items.txt txt\\monstruos.txt txt\\trampas.txt txt\\puntuaciones.txt"
         },
         {
             "type": "java",
@@ -44,9 +44,9 @@
             "mainClass": "Aventuras",
             "projectName": "ExtraordinariaTP_44e148f2",
             "windows": {
-                "args": ["4","3","5","3","2","C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\salas.txt","C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\items.txt","C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\monstruos.txt", "C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\trampas.txt", "C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\puntuaciones.txt"]
+                "args": ["4","3","5","3","2","txt\\salas.txt","txt\\items.txt","txt\\monstruos.txt", "txt\\trampas.txt", "txt\\puntuaciones.txt"]
             },
-            "args": "4 3 5 3 2 C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\salas.txt C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\items.txt C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\monstruos.txt C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\trampas.txt C:\\Users\\franc\\Desktop\\ExtraordinariaTP\\src\\puntuaciones.txt"
+            "args": "4 3 5 3 2 txt\\salas.txt txt\\items.txt txt\\monstruos.txt txt\\trampas.txt txt\\puntuaciones.txt"
         }
 
     ]
