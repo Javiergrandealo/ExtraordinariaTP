@@ -19,7 +19,7 @@ public class Aventuras {
      * ejecución del motor, muestra de puntuaciones y lectura de instrucciones
      * por teclado para jugar. Finalmente guardar la puntuación
      * 
-     * @param args
+     * @param args argumentos que se pasan al programa
      */
     public static void main(String[] args) {
         Random r = new Random();
@@ -45,8 +45,8 @@ public class Aventuras {
      * abrir y guardar en el fichero pasado como parametro el personaje
      * siguiendo el formato descrito en la memoria de la práctica
      * 
-     * @param ficheroPuntuaciones
-     * @param jugador
+     * @param ficheroPuntuaciones fichero txt que contiene las puntuaciones
+     * @param jugador jugador creado pasado por parametro
      */
     private static void guardarPuntuacion(String ficheroPuntuaciones, Personaje jugador) {
         BufferedWriter bw = null;
@@ -75,7 +75,7 @@ public class Aventuras {
      * "Puntuaciones:
      * 2024-04-04 { Raul (V: -4, A: 50, D: 40, X: 20) }, 420.0 monedas"
      * 
-     * @param ficheroPuntuaciones
+     * @param ficheroPuntuaciones fichero con las puntuaciones de los personajes
      */
     private static void mostrarPuntuaciones(String ficheroPuntuaciones) {
         BufferedReader br = null;

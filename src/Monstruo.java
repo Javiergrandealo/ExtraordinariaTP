@@ -10,10 +10,10 @@ public class Monstruo {
     /**
      * Constructor clase Monstruo
      * 
-     * @param nombre
-     * @param vida
-     * @param ataque
-     * @param defensa
+     * @param nombre nombre del monstruo
+     * @param vida puntos de vida del monstruo
+     * @param ataque puntos de ataque del monstruo
+     * @param defensa puntos de defensa del monstruo
      */
     public Monstruo(String nombre, int vida, int ataque, int defensa) {
         this.nombre = nombre;
@@ -82,7 +82,7 @@ public class Monstruo {
      * Método para devolver un String con la información del monstruo en el formato
      * descrito en la memoria de la práctica P.e: "[ Trasgo (V: 20, A: 5, D: 2) ]"
      * 
-     * @return
+     * @return nombre vida ataque y defensa del monstruo
      */
     @Override
     public String toString() {
@@ -95,7 +95,7 @@ public class Monstruo {
      * hay que comparar los parámetros internos del objeto (nombre, vida, ataque,
      * defensa)
      * 
-     * @param obj
+     * @param obj obejeto monstruo
      * @return True en caso de ser igual, false en otro caso
      */
     @Override

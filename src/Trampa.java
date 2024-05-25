@@ -7,8 +7,8 @@ public class Trampa {
 
     /**
      * Constructor de la clase Trampa
-     * @param descripcion
-     * @param danyo
+     * @param descripcion descricion con los datos de la trampa
+     * @param danyo daño que hace la trampa
      */
     public Trampa(String descripcion, int danyo) {
         this.descripcion = descripcion;

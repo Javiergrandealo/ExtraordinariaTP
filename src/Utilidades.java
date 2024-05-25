@@ -9,8 +9,8 @@ public class Utilidades {
      * Método estático leerCadena para leer un cadena de carecteres por pantalla
      * leer por pantalla y comprobar que es una cadena de caracteres válida. 
      * @param teclado
-     * @param s
-     * @return
+     * @param s mensaje a mostrar
+     * @return cadena de texto
      */
     public static String leerCadena(Scanner teclado, String s) {
         System.out.println(s);
@@ -23,11 +23,11 @@ public class Utilidades {
      * Método estático leerNumero para leer un numero pasado por pantalla
      * leer por pantalla y comprobar que es un número valido. Solicita un número repetidamente hasta que se
      *  introduzca uno correcto (dentro de los límites)
-     * @param teclado
-     * @param mensaje
-     * @param minimo
-     * @param maximo
-     * @return
+     * @param teclado Scanner
+     * @param mensaje mensaje a mostrar
+     * @param minimo valor mínimo
+     * @param maximo valor máximo
+     * @return número
      */
     // Solicita un número repetidamente hasta que se introduzca uno correcto (dentro de los límites)
     public static int leerNumero(Scanner teclado, String mensaje, int minimo, int maximo) {

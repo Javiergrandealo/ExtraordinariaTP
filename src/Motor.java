@@ -15,11 +15,11 @@ public class Motor {
     /**
      * Constructor Clase Motor
      * 
-     * @param filas
-     * @param columnas
-     * @param maxItemsPorSala
-     * @param maxMonstruosPorSala
-     * @param maxTrampasPorSalas
+     * @param filas filas del mapa
+     * @param columnas columnas del mapa
+     * @param maxItemsPorSala ites maximos por sala
+     * @param maxMonstruosPorSala mosntruos maximos por sala
+     * @param maxTrampasPorSalas trampas maximas por salas
      */
     public Motor(int filas, int columnas, int maxItemsPorSala, int maxMonstruosPorSala, int maxTrampasPorSalas) {
         mapa = new Sala[filas][columnas];
@@ -37,11 +37,10 @@ public class Motor {
      * la descripción del fichero
      * y los parámetros de maxItemsPorSala, maxMonstruosPorSala, maxTrampasPorSala.
      * 
-     * @param ficheroMapa
+     * @param ficheroMapa fichero con las salas
      * @return sala generada
      */
 
-    // Creo q esta bien, pero no estoy seguro
     Sala[][] cargarMapa(String ficheroMapa) {
         BufferedReader entrada = null;
         try {
@@ -84,7 +83,7 @@ public class Motor {
      * Método para leer un fichero de items pasado por parámetro y según
      * la fila y columna introducir el item en la sala.
      * 
-     * @param ficheroItems
+     * @param ficheroItems fichero con los items
      */
     private void cargarItems(String ficheroItems) {
         BufferedReader entrada = null;
@@ -125,7 +124,7 @@ public class Motor {
      * Método para leer un fichero de Monstruos pasado por parámetro y según
      * la fila y columna introducir el monstruo en la sala.
      * 
-     * @param ficheroMonstruos
+     * @param ficheroMonstruos fichero con los monstruos
      */
     private void cargarMonstruos(String ficheroMonstruos) {
         BufferedReader entrada = null;
@@ -167,7 +166,7 @@ public class Motor {
      * Método para leer un fichero de trampas pasado por parámetro y según
      * la fila y columna introducir la trampa en la sala.
      * 
-     * @param ficheroTrampas
+     * @param ficheroTrampas fichero con las trampas
      */
     private void cargarTrampas(String ficheroTrampas) {
         BufferedReader entrada = null;
@@ -203,10 +202,10 @@ public class Motor {
      * instanciación del parametro mapa y carga de datos con los ficheros pasados
      * como parámetros
      * 
-     * @param ficheroMapa
-     * @param ficheroItems
-     * @param ficheroMonstruos
-     * @param ficheroTrampas
+     * @param ficheroMapa fichero con el mapa de las salas
+     * @param ficheroItems fichero con los items
+     * @param ficheroMonstruos fichero con los monstruos
+     * @param ficheroTrampas fichero con las trampas
      */
     public void iniciar(String ficheroMapa, String ficheroItems, String ficheroMonstruos, String ficheroTrampas) {
         cargarMapa(ficheroMapa);
@@ -219,9 +218,9 @@ public class Motor {
      * Método getSala para obtener una sala concreta del mapa
      * devolver una Sala concreta del mapa
      * 
-     * @param fila
-     * @param columna
-     * @return
+     * @param fila filas
+     * @param columna columnas
+     * @return una matriz de filas x columnas
      */
     public Sala getSala(int fila, int columna) {
         return mapa[fila][columna];
@@ -233,9 +232,9 @@ public class Motor {
      * construir un String con la información contenida en el mapa
      * respetando el formato que aparece en la memoria de la práctica
      * 
-     * @param fila
-     * @param columna
-     * @return
+     * @param fila filas
+     * @param columna columnas
+     * @return a, un string q contiene el mapa que se va a mostrar por pantalla
      */
 
     private boolean existeSala(int fila, int columna) { // metodo auxuliar para saber si existe una sala en la posicion,
@@ -302,9 +301,9 @@ public class Motor {
      * ¡IMPORTANTE! se debe mostrar por pantalla avisos para cada opción dando
      * feedback al usuario de todo lo que ocurra (consultar enunciado)
      * 
-     * @param teclado
-     * @param personaje
-     * @param random
+     * @param teclado teclado
+     * @param personaje personaje
+     * @param random numero aleatorio
      */
     public void jugar(Scanner teclado, Personaje personaje, Random random) {
         boolean salir = false;
@@ -392,9 +391,9 @@ public class Motor {
      * realizar o no la acción.
      * Se devolverá la sala destino a la que se ha movido el personaje.
      * 
-     * @param teclado
-     * @param salaActual
-     * @return
+     * @param teclado teclado
+     * @param salaActual salaActual en la que se encuentra el personaje
+     * @return sala nueva a la que se va a dirgir el personaje
      */
     public Sala seleccionarMovimiento(Scanner teclado, Sala salaActual) {
         Sala nuevaSala;

@@ -14,13 +14,13 @@ public class Personaje {
     /**
      * Constructor de la clase para inicializar todos los atributos
      * 
-     * @param nombre
-     * @param vida
-     * @param ataque
-     * @param defensa
-     * @param destreza
-     * @param maxItemsPorPersonaje
-     * @param maxPesoPorPersonaje
+     * @param nombre nombre del personaje
+     * @param vida vida del personaje
+     * @param ataque ataque del personaje
+     * @param defensa defensa del personaje
+     * @param destreza destreza del personaje
+     * @param maxItemsPorPersonaje maximo numero de items que se puede llevar
+     * @param maxPesoPorPersonaje peso maximo que puede llevar el personaje
      */
     public Personaje(String nombre, int vida, int ataque, int defensa, int destreza, int maxItemsPorPersonaje,
             double maxPesoPorPersonaje) {
@@ -42,8 +42,8 @@ public class Personaje {
      * validos. Una vez recabados
      * todos los datos del personaje generar un objeto con dichas características.
      * 
-     * @param teclado
-     * @return
+     * @param teclado teclado
+     * @return personaje nuevo
      */
     public static Personaje crearPersonaje(Scanner teclado) {
         Personaje personaje;
@@ -131,8 +131,8 @@ public class Personaje {
     /**
      * Método getItem para devolver un Item según un índice dado
      * Tdevolver null si el índice no es válido, y el item si el índice es correcto
-     * @param indice
-     * @return
+     * @param indice posicion del indice en la array
+     * @return el item en la posición indicada
      */
     public Item getItem(int indice) {
         if (indice < 0 || indice >= items.length) {
@@ -147,7 +147,7 @@ public class Personaje {
      * Si el daño no es positivo, no hacer nada. En caso contrario reducir la
      * vida según el daño pasado
      * 
-     * @param danyo
+     * @param danyo daño recibido
      */
     public void recibirDanyo(int danyo) {
         danyo = danyo - defensa;
@@ -165,8 +165,8 @@ public class Personaje {
      * item a la lista de items del
      * personaje y devolver true
      * 
-     * @param item
-     * @return
+     * @param item item que se quiere añadir a la array de items del personaje
+     * @return valido
      */
     public boolean anyadirItem(Item item) {
         boolean valido = false;
@@ -190,7 +190,7 @@ public class Personaje {
      * descrito en la memoria de la práctica P.e: "{ Edgar (V: 20, A: 5, D: 2, X: 5)
      * }"
      * 
-     * @return
+     * @return nombre vida ataque defensa y destreza
      */
     @Override
     public String toString() {
@@ -204,7 +204,7 @@ public class Personaje {
      * personaje
      * recorrer la lista de items para obtener el peso total de todos y devolverlo
      * 
-     * @return
+     * @return peso de todos los objetos en la mochila
      */
     public double getPesoMochila() {
         double peso = 0;
@@ -221,7 +221,7 @@ public class Personaje {
      * items el personaje
      * recorrer la lista de items para obtener el valor total de todos y devolverlo
      * 
-     * @return
+     * @return valor de la mochila en monedas
      */
     public double getValorMochila() {
         double valor = 0;
@@ -244,7 +244,7 @@ public class Personaje {
      * Peso total: 5.5 Kg
      * Tu mochila vale 400 monedas"
      * 
-     * @return
+     * @return toda la mochila en forma de string
      */
     public String infoMochila() {
         String mensaje = "Mochila de " + nombre + ":" + "\n";
