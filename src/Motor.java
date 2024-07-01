@@ -232,8 +232,8 @@ public class Motor {
      * construir un String con la información contenida en el mapa
      * respetando el formato que aparece en la memoria de la práctica
      * 
-     * @param fila filas
-     * @param columna columnas
+     * @param fila fila en la que esta el personaje
+     * @param columna columna en la que esta el personaje
      * @return a, un string q contiene el mapa que se va a mostrar por pantalla
      */
 
