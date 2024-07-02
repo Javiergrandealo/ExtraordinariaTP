@@ -29,9 +29,9 @@ public class Personaje {
         this.ataque = ataque;
         this.defensa = defensa;
         this.destreza = destreza;
-        maxItemsPorPersonaje = destreza / 4;
-        this.maxPesoPorPersonaje = ataque / 2;
-        items = new Item[maxItemsPorPersonaje];
+        maxItemsPorPersonaje = destreza / 4; // maximo numero de items que se puede llevar es la destreza entre 4
+        this.maxPesoPorPersonaje = ataque / 2; // peso maximo que puede llevar el personaje es el ataque entre 2
+        items = new Item[maxItemsPorPersonaje]; // se crea un array de items con el maximo de items que puede llevar el personaje
     }
 
     /**
@@ -135,10 +135,10 @@ public class Personaje {
      * @return el item en la posición indicada
      */
     public Item getItem(int indice) {
-        if (indice < 0 || indice >= items.length) {
-            return null;
-        } else {
-            return items[indice];
+        if (indice < 0 || indice >= items.length) { // si el indice es menor que 0 o mayor que la longitud de la array
+            return null; //devolver null
+        } else { // si no
+            return items[indice]; //devolver el item en la posicion indicada
         }
     }
 
@@ -150,8 +150,8 @@ public class Personaje {
      * @param danyo daño recibido
      */
     public void recibirDanyo(int danyo) {
-        danyo = danyo - defensa;
-        if (danyo > 0) {
+        danyo = danyo - defensa; //El daño que recibe el personaje es el daño menos la defensa del personaje
+        if (danyo > 0) { //Si el daño es mayor que 0, se le resta a la vida del personaje
             vida -= danyo;
             System.out.println("¡" + nombre + " ha recibido " + danyo + " puntos de daño!");
         }
@@ -171,12 +171,12 @@ public class Personaje {
      */
     public boolean anyadirItem(Item item) {
         boolean valido = false;
-    if (items.length <= destreza / 4 && getPesoMochila() + item.getPeso() < maxPesoPorPersonaje) {
+    if (items.length <= destreza / 4 && getPesoMochila() + item.getPeso() < maxPesoPorPersonaje) { //Si el personaje puede llevar el item
         int i = 0;
-        while (i < items.length && items[i] != null) {
+        while (i < items.length && items[i] != null) { //Recorrer la lista de items del personaje hasta que haya un hueco
             i++;
         }
-        if (i < items.length) {
+        if (i < items.length) { //Si hay hueco, añadir el item
             items[i] = item;
             valido = true;
         }
@@ -209,8 +209,8 @@ public class Personaje {
      */
     public double getPesoMochila() {
         double peso = 0;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null) {
+        for (int i = 0; i < items.length; i++) { //Recorrer la lista de items del personaje
+            if (items[i] != null) { //Si el item no es nulo, sumar su peso al total
                 peso += items[i].getPeso();
             }
         }
@@ -226,8 +226,8 @@ public class Personaje {
      */
     public double getValorMochila() {
         double valor = 0;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null) {
+        for (int i = 0; i < items.length; i++) { //Recorrer la lista de items del personaje
+            if (items[i] != null) { //Si el item no es nulo, sumar su valor al total
                 valor += items[i].getValor();
             }
         }

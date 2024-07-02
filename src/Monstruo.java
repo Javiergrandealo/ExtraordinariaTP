@@ -67,12 +67,12 @@ public class Monstruo {
      * @param ataque
      */
     public void recibirDanyo(int ataque) {
-        ataque = ataque - defensa;
-        if (ataque > 0) {
+        ataque = ataque - defensa; //El daño que recibe el monstruo es el ataque del jugador menos la defensa del monstruo
+        if (ataque > 0) { //Si el ataque es mayor que 0, se le resta a la vida del monstruo
             vida -= ataque;
         }
-        if (vida < 0) {
-            vida = 0;
+        if (vida < 0) { //Si la vida del monstruo es menor que 0, se pone a 0
+            vida = 0; //La vida del monstruo no puede ser negativa
             
         }
     }
@@ -101,7 +101,7 @@ public class Monstruo {
     @Override
     // CUIDADO: NO SABEMOS COMO FUNCIONA LOS DE OBJECT ASI QUE NO SABEMOS SI ESTA
     // BIEN, PREGUNTAR EN TUTORIA
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj) { //Son iguales si cualquier objeto pasado como parámetro es igual a este en nombre, vida, ataque y defensa
         Monstruo monstruo = (Monstruo) obj;
         return monstruo.getAtaque() == getAtaque() && monstruo.getVida() == getVida()
                 && monstruo.getDefensa() == getDefensa()

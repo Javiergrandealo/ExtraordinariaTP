@@ -19,23 +19,24 @@ public class Aventuras {
      * ejecución del motor, muestra de puntuaciones y lectura de instrucciones
      * por teclado para jugar. Finalmente guardar la puntuación
      * 
+     * Estudio: es el metodo principal, donde se crea el objeto motor y se da inicio al juego
      * @param args argumentos que se pasan al programa
      */
     public static void main(String[] args) {
-        Random r = new Random();
+        Random r = new Random(); //se genera un objeto de la clase Random para generar numeros aleatorios
         Scanner sc = new Scanner(System.in);
-        if(args.length!=10){
+        if(args.length!=10){ //si no hay 10 argumentos se muestra un mensaje de error y se sale del programa
             System.out.println("Error en el numero de argumentos. Deben ser 10.");
             System.exit(1);
         }
-        mostrarPuntuaciones(args[9]);
+        mostrarPuntuaciones(args[9]); //se muestran las puntuaciones almacenadas en el fichero pasado como parametro
         Motor motor = new Motor(Integer.parseInt(args[0])+1, Integer.parseInt(args[1])+1, Integer.parseInt(args[2]),
-                Integer.parseInt(args[3]), Integer.parseInt(args[4]));
-        Personaje jugador =Personaje.crearPersonaje(sc) ;
-        motor.iniciar(args[5], args[6], args[7], args[8]);
-        motor.jugar(sc, jugador, r);
+                Integer.parseInt(args[3]), Integer.parseInt(args[4])); //se crea un objeto de la clase Motor
+        Personaje jugador =Personaje.crearPersonaje(sc) ; //se crea un objeto de la clase Personaje a traves del metodo crearPersonaje
+        motor.iniciar(args[5], args[6], args[7], args[8]); //se inicia el motor con los argumentos pasados
+        motor.jugar(sc, jugador, r); //se inicia el juego con el Scanner, el personaje y el objeto Random
         System.out.println("Se va a guardar la partida en el fichero de puntuaciones");
-        guardarPuntuacion(args[9], jugador);
+        guardarPuntuacion(args[9], jugador); //se guarda la puntuacion en el fichero pasado como parametro
         
 
     }
@@ -49,11 +50,11 @@ public class Aventuras {
      * @param jugador jugador creado pasado por parametro
      */
     private static void guardarPuntuacion(String ficheroPuntuaciones, Personaje jugador) {
-        BufferedWriter bw = null;
+        BufferedWriter bw = null; //se hace el bufferedWriter
         try {
-            bw = new BufferedWriter(new FileWriter(ficheroPuntuaciones, true));
-            bw.write(LocalDate.now() + "\t" + jugador.toString() + ", " + jugador.getValorMochila() + " monedas");
-            bw.newLine();
+            bw = new BufferedWriter(new FileWriter(ficheroPuntuaciones, true)); //se le pasa como parametro el fichero y true para que no sobreescriba
+            bw.write(LocalDate.now() + "\t" + jugador.toString() + ", " + jugador.getValorMochila() + " monedas"); //se escribe en el fichero la fecha, el personaje y el valor de la mochila
+            bw.newLine(); //se salta de linea
         } catch (IOException e) {
             System.out.println("Error al guardar la puntuación");
             e.printStackTrace();
@@ -78,13 +79,13 @@ public class Aventuras {
      * @param ficheroPuntuaciones fichero con las puntuaciones de los personajes
      */
     private static void mostrarPuntuaciones(String ficheroPuntuaciones) {
-        BufferedReader br = null;
+        BufferedReader br = null; //se crea el BufferedReader
         try {
-            br = new BufferedReader(new FileReader(ficheroPuntuaciones));
-            System.out.println("Puntuaciones:");
+            br = new BufferedReader(new FileReader(ficheroPuntuaciones)); //se le pasa como parametro el fichero
+            System.out.println("Puntuaciones:"); //se imprime por pantalla
             String linea;
-            while ((linea = br.readLine()) != null) {
-                System.out.println(linea);
+            while ((linea = br.readLine()) != null) { //mientras haya lineas en el fichero
+                System.out.println(linea); //se imprime la linea
             }
         } catch (FileNotFoundException e) { //excepcion que se lanza si no se encuentra el fichero
             System.out.println("Error al leer el fichero de puntuaciones");

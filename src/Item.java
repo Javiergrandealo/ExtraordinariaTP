@@ -62,7 +62,7 @@ public class Item {
      * @return True en caso de ser igual, false en otro caso
      */
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj) { //Son iguales si cualquier objeto pasado como parámetro es igual a este en descripción, peso y valor
             Item item = (Item) obj;
             return item.getDescripcion().equals(descripcion) && item.getPeso() == peso && item.getValor() == valor;
     }

@@ -13,10 +13,10 @@ public class Utilidades {
      * @return cadena de texto
      */
     public static String leerCadena(Scanner teclado, String s) {
-        System.out.println(s);
-        String cadena;
-        cadena =teclado.nextLine();
-        return cadena;
+        System.out.println(s); //mostramos el mensaje
+        String cadena; //declaramos la variable cadena
+        cadena =teclado.nextLine(); //leemos la cadena
+        return cadena; //devolvemos la cadena
     }
 
     /**
@@ -31,14 +31,14 @@ public class Utilidades {
      */
     // Solicita un número repetidamente hasta que se introduzca uno correcto (dentro de los límites)
     public static int leerNumero(Scanner teclado, String mensaje, int minimo, int maximo) {
-        System.out.println(mensaje);
-        int numero = teclado.nextInt();
+        System.out.println(mensaje); //mostramos el mensaje
+        int numero = teclado.nextInt(); //leemos el número
         teclado.nextLine(); //parece ser que hay que limpiar el buffer
-        while (numero < minimo || numero > maximo) {
-            System.out.println("Número incorrecto. " + mensaje);
-            numero = teclado.nextInt();
-            teclado.nextLine();
+        while (numero < minimo || numero > maximo) { //mientras el número no esté en el rango
+            System.out.println("Número incorrecto. " + mensaje); //mostramos mensaje de error
+            numero = teclado.nextInt(); //leemos el número
+            teclado.nextLine(); //limpiamos el buffer
         }
-        return numero;
+        return numero; //devolvemos el número
     }
 }

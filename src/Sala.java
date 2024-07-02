@@ -41,14 +41,14 @@ public class Sala {
      */
     public boolean agregarItem(Item item) {
         boolean resul = true;
-        for (int i = 0; i < numeroItems; i++) {
-            if (items[i] == item) {
-                resul = false;
+        for (int i = 0; i < numeroItems; i++) { //recorrer la lista de items
+            if (items[i] == item) { //Si el item ya está en la lista
+                resul = false; //No se puede añadir
             }
         }
-        if (resul) {
-            items[numeroItems] = item;
-            numeroItems++;
+        if (resul) { //si se puede añadir
+            items[numeroItems] = item; //lo añado en la posicion que le toca
+            numeroItems++; //incremento el numero de items
         }
         return resul;
     }
@@ -62,14 +62,14 @@ public class Sala {
      */
     public boolean agregarMonstruo(Monstruo monstruo) {
         boolean resultado = true;
-    for (int i = 0; i < numeroMonstruos; i++) {
-        if (monstruos[i] == monstruo) {
-            resultado = false;
+    for (int i = 0; i < numeroMonstruos; i++) { //recorrer la lista de monstruos
+        if (monstruos[i] == monstruo) { //Si el monstruo ya está en la lista
+            resultado = false; //No se puede añadir
         }
     }
-    if (resultado && numeroMonstruos < monstruos.length) {
-        monstruos[numeroMonstruos] = monstruo;
-        numeroMonstruos++;
+    if (resultado && numeroMonstruos < monstruos.length) { //si se puede añadir
+        monstruos[numeroMonstruos] = monstruo; //lo añado en la posicion que le toca
+        numeroMonstruos++; //incremento el numero de monstruos
     } else {
         resultado = false;
     }
@@ -85,14 +85,14 @@ public class Sala {
      */
     public boolean agregarTrampa(Trampa trampa) {
         boolean resultado = true;
-        for (int i = 0; i < numeroTrampas; i++) {
-            if (trampas[i] == trampa) {
-                resultado = false;
+        for (int i = 0; i < numeroTrampas; i++) { //recorrer la lista de trampas
+            if (trampas[i] == trampa) { //Si la trampa ya está en la lista
+                resultado = false; //No se puede añadir
             }
         }
-        if (resultado) {
-            trampas[numeroTrampas] = trampa;
-            numeroTrampas++;
+        if (resultado) { //si se puede añadir
+            trampas[numeroTrampas] = trampa; //lo añado en la posicion que le toca
+            numeroTrampas++; //incremento el numero de trampas
         }
         return resultado;
     }
@@ -111,9 +111,9 @@ public class Sala {
      * @return boolean resultado 
      */
     public boolean hayMonstruos() {
-        for (int i = 0; i < monstruos.length; i++) {
-            if (monstruos[i] != null) {
-                return true;
+        for (int i = 0; i < monstruos.length; i++) { //recorrer la lista de monstruos
+            if (monstruos[i] != null) { //si hay un monstruo (es decir cualquiera de las posiciones de la lista no es null)
+                return true; //devolver true
             }
         }
         return false;
@@ -127,20 +127,20 @@ public class Sala {
      * @param teclado
      * @return Monstruo seleccionado a partir del nombre
      */
-    public Monstruo seleccionarMonstruo(Scanner teclado) {
-        Monstruo monstruo = null;
+    public Monstruo seleccionarMonstruo(Scanner teclado) { 
+        Monstruo monstruo = null; //creo un nuevo monstruo que inicializo a null
         String string;
-        if(hayMonstruos()){
-            listarMonstruos();
-            do{
-                string =Utilidades.leerCadena(teclado, "Escribe el nombre del monstruo que quieres atacar: ");
+        if(hayMonstruos()){ //si hay mounstros en la sala
+            listarMonstruos(); //listo los monstruos
+            do{ //hago lo de abajo
+                string =Utilidades.leerCadena(teclado, "Escribe el nombre del monstruo que quieres atacar: "); //pido el nombre del monstruo
                 monstruo = buscarMonstruo(string);
-                if(monstruo == null){
-                    System.out.println("No se encontró el monstruo. Por favor, intenta de nuevo.");
+                if(monstruo == null){ //si el monstruo no existe
+                    System.out.println("No se encontró el monstruo. Por favor, intenta de nuevo."); //muestro un mensaje de error
                 }
-            }while(monstruo == null);
+            }while(monstruo == null); //hasta q se seleccione un monstruo
         }
-        return monstruo;
+        return monstruo; //devuelvo el monstruo
     }
 
     /**
@@ -150,14 +150,16 @@ public class Sala {
      * @return monstruo buscado
      */
     public Monstruo buscarMonstruo(String nombreMonstruo) {
-        if (monstruos != null) {
-            for (int i = 0; i < monstruos.length; i++) {
-                if (monstruos[i] != null && monstruos[i].getNombre().toLowerCase().contains(nombreMonstruo.toLowerCase())) {
-                    return monstruos[i];
+        if (monstruos != null) { //si hay monstruos en la sala
+            for (int i = 0; i < monstruos.length; i++) { //recorrer la lista de monstruos
+                if (monstruos[i] != null && monstruos[i].getNombre().toLowerCase().contains(nombreMonstruo.toLowerCase())) { //si el nombre del monstruo 
+                                                                                                                            // coincide con el nombre pasado como 
+                                                                                                                            //parámetro utilizando el metodo contains
+                    return monstruos[i]; //devolver el monstruo
                 }
             }
         }
-        return null;
+        return null; //sino, devolver null
     }
 
     /**
@@ -166,9 +168,9 @@ public class Sala {
      */
     private void listarMonstruos() {
         System.out.println("Monstruos en la sala: ");
-        for (int i = 0; i < monstruos.length; i++) {
-            if (monstruos[i] != null) {
-                System.out.println(monstruos[i].toString());
+        for (int i = 0; i < monstruos.length; i++) { //recorrer la lista de monstruos
+            if (monstruos[i] != null) { //si hay un monstruo en la posición i
+                System.out.println(monstruos[i].toString()); //hago el toString del monstruo
             }
         }
     }
@@ -179,20 +181,21 @@ public class Sala {
      * @param nombreMonstruo nombre del monstruo a eliminar
      */
     public void eliminarMonstruo(String nombreMonstruo) {
-        int pos = -1;
+        int pos = -1; //inicializo la posición a -1
     boolean encontrado = false;
-    for (int i = 0; i < monstruos.length && !encontrado; i++) {
-        if (monstruos[i] != null && monstruos[i].getNombre().equals(nombreMonstruo)) {
-            pos = i;
+    for (int i = 0; i < monstruos.length && !encontrado; i++) { //recorrer la lista de monstruos mientras q no lo haya encontrado
+        if (monstruos[i] != null && monstruos[i].getNombre().equals(nombreMonstruo)) { //busco el nombre del monstruo (igual que el metodo buscarMonstruo)
+            pos = i; //me guardo la posicion del monstruo a eliminar
             encontrado = true;
         }
     }
-    if (encontrado) {
-        for (int i = pos; i < monstruos.length - 1; i++) {
-            monstruos[i] = monstruos[i + 1];
+    if (encontrado) { //una vez encontrado
+        for (int i = pos; i < monstruos.length - 1; i++) { //recorro la lista de monstruos desde la posición del monstruo a eliminar
+                                                        //hasta el final de la lista -1
+            monstruos[i] = monstruos[i + 1]; //la posicion del monstruo a eliminar la igualo a la siguiente y asi en bucle
             numeroMonstruos--;
         }
-        monstruos[monstruos.length - 1] = null;
+        monstruos[monstruos.length - 1] = null; //pongo la última posición de la lista a null
     }
     }
 
@@ -202,8 +205,9 @@ public class Sala {
  * @return true si el monstruo existe, false en caso contrario
  */
 public boolean existeMonstruo(String nombreMonstruo) {
-    for (int i = 0; i < monstruos.length; i++) {
-        if (monstruos[i] != null && monstruos[i].getNombre().equals(nombreMonstruo)) {
+    for (int i = 0; i < monstruos.length; i++) { //recorrer la lista de monstruos
+        if (monstruos[i] != null && monstruos[i].getNombre().equals(nombreMonstruo)) { //si el monstruo no es null y el nombre del monstruo coincide 
+                                                                                       //con el nombre pasado como parámetro
             return true;
         }
     }
@@ -215,9 +219,9 @@ public boolean existeMonstruo(String nombreMonstruo) {
      * @return boolean resultado
      */
     public boolean hayTrampas() {
-        for (int i = 0; i < trampas.length; i++) {
-            if(trampas[i] != null){
-                return true;
+        for (int i = 0; i < trampas.length; i++) { //recorrer la lista de trampas
+            if(trampas[i] != null){ //si hay una trampa en la posición i
+                return true; //devolver true
             }
         }
         return false;
@@ -245,8 +249,8 @@ public boolean existeMonstruo(String nombreMonstruo) {
      * @return boolean resultado si hay items en la sala
      */
     public boolean hayItems() {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null) {
+        for (int i = 0; i < items.length; i++) { //recorrer la lista de items
+            if (items[i] != null) { //si hay un item en la posición i
                 return true;
             }
         }
@@ -261,9 +265,10 @@ public boolean existeMonstruo(String nombreMonstruo) {
      * @return Item item buscado según la descripción
      */
     public Item buscarItem(String descripcion) {
-        for (int i = 0; i < numeroItems; i++) {
-            if (items[i].getDescripcion().toLowerCase().contains(descripcion.toLowerCase())) {
-                return items[i];
+        for (int i = 0; i < numeroItems; i++) { //recorrer la lista de items
+            if (items[i].getDescripcion().toLowerCase().contains(descripcion.toLowerCase())) { //si la descripción del item coincide con la 
+                                                                                               //descripción pasada como parámetro
+                return items[i]; //devolver el item
             }
         }
         return null;
@@ -278,9 +283,9 @@ public boolean existeMonstruo(String nombreMonstruo) {
      */
     public Trampa buscarTrampa(String descripcion) {
         Trampa trampa = null;
-        for (int i = 0; i < trampas.length; i++) {
-            if (trampas[i].getDescripcion().equals(descripcion)) {
-                trampa = trampas[i];
+        for (int i = 0; i < trampas.length; i++) { //recorrer la lista de trampas
+            if (trampas[i].getDescripcion().equals(descripcion)) { //si la descripción de la trampa coincide con la descripción pasada como parámetro
+                trampa = trampas[i]; //devolver la trampa
             }
         }
         return trampa;
@@ -304,16 +309,16 @@ public boolean existeMonstruo(String nombreMonstruo) {
     public Item seleccionarItem(Scanner teclado) {
         Item item = null;
     String string;
-    if(hayItems()){
+    if(hayItems()){ //si hay items en la sala
         System.out.println("Items que se encuentran en la sala "+ descripcion+":");
-        listarItems();
-        do {
+        listarItems(); //listo los items
+        do { //haces lo de abajo
             string = Utilidades.leerCadena(teclado, "Escribe la descripción del item que quieres coger (NINGUNO  para cancelar):");
             item = buscarItem(string);
             if (item == null && !string.equals("NINGUNO")) {
                 System.out.println("No se encontró el item. Por favor, intenta de nuevo.");
             }
-        } while (!string.equals("NINGUNO") && item == null);
+        } while (!string.equals("NINGUNO") && item == null); //mientras que el usuario no escriba NINGUNO o no haya mas items en la sala
     }
     return item;
     }
@@ -324,9 +329,9 @@ public boolean existeMonstruo(String nombreMonstruo) {
      *  items que hay en la sala
      */
     private void listarItems() {
-        if(hayItems()){
-            for (int i = 0; i < numeroItems; i++) {
-                System.out.println(items[i].toString());
+        if(hayItems()){ //si hay items en la sala
+            for (int i = 0; i < numeroItems; i++) { //recorro la array de items
+                System.out.println(items[i].toString()); //muestro la información de los items
             }
         }
         
@@ -337,14 +342,16 @@ public boolean existeMonstruo(String nombreMonstruo) {
      * buscar el item que coincida con la descripción pasada por parámetro y eliminarlo de la lista de items
      * @param descripcion descripción del item a eliminar
      */
-    public void eliminarItem(String descripcion) {
-        int pos = 0;
-        while (!(items[pos].getDescripcion().equals(descripcion)) && items[pos] != null) {
-            pos++;
+    public void eliminarItem(String descripcion) { 
+        int pos = 0; //inicializo la posición a 0
+        while (!(items[pos].getDescripcion().equals(descripcion)) && items[pos] != null) { //mientras que la descripción del item no coincida con 
+                                                                                         //la descripción pasada como parámetro y el item no sea null
+            pos++; //incremento la posición
         }
-        for (int i = pos; i < numeroItems; i++) {
-            items[i] = items[1 + i];
-            numeroItems--;
+        for (int i = pos; i < numeroItems; i++) { //recorro la lista de items desde la posición del item a eliminar
+                                                //hasta el final de la lista
+            items[i] = items[1 + i]; //la posición del item a eliminar la igualo a la siguiente y asi en bucle
+            numeroItems--; // decremento el número de items
         }
     }
 }
