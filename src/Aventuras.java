@@ -38,7 +38,6 @@ public class Aventuras {
         System.out.println("Se va a guardar la partida en el fichero de puntuaciones");
         guardarPuntuacion(args[9], jugador); //se guarda la puntuacion en el fichero pasado como parametro
         
-
     }
 
     /**
